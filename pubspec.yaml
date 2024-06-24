@@ -65,7 +65,7 @@ flutter:
   assets:
       - assets/images/
       - assets/images/base/
-
+      - assets/images/sidemenu/
   fonts:
     - family: poppins
       fonts:

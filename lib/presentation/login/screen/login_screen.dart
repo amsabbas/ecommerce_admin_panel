@@ -10,8 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
-import '../model/form_data.dart';
+
 import '../../base/language/language.dart';
+import '../model/form_data.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -48,7 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Align(
           alignment: Alignment.topCenter,
           child: Container(
-            padding: const EdgeInsets.only(top: 16.0 * 5.0),
+            padding: const EdgeInsets.only(top: 80),
             constraints: const BoxConstraints(maxWidth: 400.0),
             child: Card(
               clipBehavior: Clip.antiAlias,
@@ -57,89 +58,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 16),
-                      child: Image.asset(
-                        AssetResource.appLogoImagePath,
-                        height: 80.0,
-                      ),
-                    ),
-                    Text(
-                      MessageKeys.webAdmin.tr,
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: AppColors.ceruleanBlueColor,
-                          ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 16 * 2.0),
-                      child: Text(
-                        MessageKeys.adminPortalLogin.tr,
-                        style:
-                            Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  color: AppColors.ceruleanBlueColor,
-                                ),
-                      ),
-                    ),
-                    FormBuilder(
-                      key: _formKey,
-                      autovalidateMode: AutovalidateMode.disabled,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 16 * 1.5),
-                            child: FormBuilderTextField(
-                              name: 'username',
-                              decoration: InputDecoration(
-                                labelText: MessageKeys.username.tr,
-                                hintText: MessageKeys.username.tr,
-                                border: const OutlineInputBorder(),
-                                floatingLabelBehavior:
-                                    FloatingLabelBehavior.always,
-                              ),
-                              enableSuggestions: false,
-                              validator: FormBuilderValidators.required(),
-                              onSaved: (value) =>
-                                  (_formData.username = value ?? ''),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 16 * 2.0),
-                            child: FormBuilderTextField(
-                              name: 'password',
-                              decoration: InputDecoration(
-                                labelText: MessageKeys.password.tr,
-                                hintText: MessageKeys.password.tr,
-                                border: const OutlineInputBorder(),
-                                floatingLabelBehavior:
-                                    FloatingLabelBehavior.always,
-                              ),
-                              enableSuggestions: false,
-                              obscureText: true,
-                              validator: FormBuilderValidators.required(),
-                              onSaved: (value) =>
-                                  (_formData.password = value ?? ''),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 16),
-                            child: SizedBox(
-                              height: 40.0,
-                              width: double.infinity,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  if (_formKey.currentState?.validate() ??
-                                      false) {
-                                    _loginController.login(
-                                        _formData.username, _formData.password);
-                                  }
-                                },
-                                child: Text(MessageKeys.loginButtonTitle.tr),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    _logoWidget(),
+                    _titleWidget(),
+                    _formWidget(),
                   ],
                 ),
               ),
@@ -150,6 +71,101 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  Widget _logoWidget() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Image.asset(
+        AssetResource.appLogoImagePath,
+        height: 80.0,
+      ),
+    );
+  }
+
+  Widget _titleWidget() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          MessageKeys.webAdmin.tr,
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                color: AppColors.ceruleanBlueColor,
+              ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 32),
+          child: Text(
+            MessageKeys.adminPortalLogin.tr,
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  color: AppColors.ceruleanBlueColor,
+                ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _formWidget() {
+    return Column(
+      children: [
+        FormBuilder(
+          key: _formKey,
+          autovalidateMode: AutovalidateMode.disabled,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 24),
+                child: FormBuilderTextField(
+                  name: MessageKeys.username,
+                  decoration: InputDecoration(
+                    labelText: MessageKeys.username.tr,
+                    hintText: MessageKeys.username.tr,
+                    border: const OutlineInputBorder(),
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                  ),
+                  enableSuggestions: false,
+                  validator: FormBuilderValidators.required(),
+                  onSaved: (value) => (_formData.username = value ?? ''),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 32),
+                child: FormBuilderTextField(
+                  name: MessageKeys.password,
+                  decoration: InputDecoration(
+                    labelText: MessageKeys.password.tr,
+                    hintText: MessageKeys.password.tr,
+                    border: const OutlineInputBorder(),
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                  ),
+                  enableSuggestions: false,
+                  obscureText: true,
+                  validator: FormBuilderValidators.required(),
+                  onSaved: (value) => (_formData.password = value ?? ''),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: SizedBox(
+                  height: 40.0,
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState?.validate() ?? false) {
+                        _loginController.login(
+                            _formData.username, _formData.password);
+                      }
+                    },
+                    child: Text(MessageKeys.loginButtonTitle.tr),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
   void _showLoginError(AppErrorModel result) {
     CustomSnackBar.showFailureSnackBar(
         title: MessageKeys.error.tr,
@@ -157,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _showLoginSuccess() {
-    Get.to(() => const HomeContainerScreen());
+    Get.to(() => const HomeScreen());
   }
 
   @override

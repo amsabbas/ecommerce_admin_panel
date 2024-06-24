@@ -52,7 +52,7 @@ class CustomTheme {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
             ),
-            backgroundColor: AppColors.yellowColor,
+            backgroundColor: AppColors.ceruleanBlueColor,
           ),
         ));
   }

@@ -5,7 +5,7 @@ class AppColors {
   static const Color whiteColor = Colors.white;
   static const Color transparentColor = Colors.transparent;
   static const Color ceruleanBlueColor = Color.fromRGBO(42, 52, 122, 1);
-  static const Color lightGrayColor20 = Color.fromRGBO(180, 180, 180, 0.2);
+  static const Color lightGrayColor20 = Color.fromRGBO(180, 180, 180, 0.1);
   static const Color darkGrayColor = Color.fromRGBO(180, 180, 180, 1);
   static const Color lightGrayColor = Color.fromRGBO(240, 240, 240, 1);
   static const Color purpleColor = Color.fromRGBO(81, 16, 74, 1);

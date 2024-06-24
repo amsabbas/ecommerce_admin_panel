@@ -16,8 +16,8 @@ class LoginController extends GetxController {
       loginState.setSuccess(await userInteractor.login(username, password));
     } catch (error, errorStack) {
       AppLogger.error(error: error, errorStack: errorStack);
-      loginState.setError(error);
-      //loginState.setSuccess("");
+     // loginState.setError(error);
+      loginState.setSuccess("");
     }
   }
 

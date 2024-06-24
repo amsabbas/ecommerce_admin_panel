@@ -1,3 +1,4 @@
+import 'package:ecommerce_admin/presentation/base/controller/menu_controller.dart';
 import 'package:ecommerce_admin/presentation/login/controller/login_controller.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -33,7 +34,7 @@ class AppBindings extends Bindings {
         settingsInteractor: Get.find<SettingsInteractor>()));
 
     Get.lazyPut(() => ServiceGenerator(
-        "http://amin-pet-shop.thesiliconsage.com/api/",
+        "http://localhost/",
         Get.find<AuthManager>(),
         Get.find<SettingsLocalDataSource>()));
 
@@ -48,5 +49,7 @@ class AppBindings extends Bindings {
     Get.lazyPut(
       () => LoginController(userInteractor: Get.find<UserInteractor>()),
     );
+
+    Get.lazyPut(() => MenuAppController());
   }
 }

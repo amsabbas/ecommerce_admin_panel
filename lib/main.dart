@@ -3,7 +3,6 @@ import 'package:ecommerce_admin/presentation/base/language/language.dart';
 import 'package:ecommerce_admin/presentation/base/style/theme.dart';
 import 'package:ecommerce_admin/presentation/base/utils/app_bindings.dart';
 import 'package:ecommerce_admin/presentation/home/screen/home_screen.dart';
-import 'package:ecommerce_admin/presentation/login/screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -51,7 +50,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: theme,
       darkTheme: theme,
-      home: const LoginScreen(),
+      home: const HomeScreen(),
       translations: Language(),
     );
   }

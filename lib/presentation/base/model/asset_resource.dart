@@ -6,6 +6,8 @@ class AssetResource {
   //general
   static const String appLogoImagePath = "${imagePath}base/app_logo.png";
 
-
+  //side-menu
+  static const String dashboardImagePath = "${imagePath}sidemenu/menu_dashboard.svg";
+  static const String productsImagePath = "${imagePath}sidemenu/menu_products.svg";
 
 }

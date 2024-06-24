@@ -20,7 +20,7 @@ class MessageKeys {
   static const String viewMore = "viewMore";
   static const String noData = "noData";
   static const String noFound = "noFound";
-  static const String logoutMessage = "logoutMessage";
+  static const String logoutButtonTitle = "logoutButtonTitle";
 
   static const String loginButtonTitle = "loginButtonTitle";
   static const String adminPortalLogin = "adminPortalLogin";
@@ -28,16 +28,27 @@ class MessageKeys {
   static const String password = "password";
   static const String username = "username";
 
+  static const String dashboardTitle = "dashboardTitle";
+  static const String productsTitle = "productsTitle";
+
+  static const String newOrders = "newOrders";
+  static const String todaySales = "todaySales";
+  static const String newUsers = "newUsers";
+
+  static const String recentOrders = "recentOrders";
+
+  static const String productDetail = "productDetail";
 }
 
 class Language extends Translations {
   @override
-  Map<String, Map<String, String>> get keys => {
+  Map<String, Map<String, String>> get keys =>
+      {
         'en': {
           MessageKeys.appName: 'Amin Pet Shop',
           MessageKeys.alert: 'Attention',
           MessageKeys.networkError:
-              "Please make sure you are connected to the internet",
+          "Please make sure you are connected to the internet",
           MessageKeys.unKnown: "Unknown error, please try again",
           MessageKeys.unAuthorized: "UnAuthorized, please re-login",
           MessageKeys.error: "Error",
@@ -54,13 +65,23 @@ class Language extends Translations {
           MessageKeys.viewMore: "Show more",
 
           MessageKeys.noFound: "Not found",
-          MessageKeys.logoutMessage: "Are you sure you want to logout",
+          MessageKeys.logoutButtonTitle: "Logout",
           MessageKeys.loginButtonTitle: "Login",
           MessageKeys.adminPortalLogin: "Admin Portal Login",
           MessageKeys.webAdmin: "Web Admin",
           MessageKeys.password: "Password",
           MessageKeys.username: "Username",
 
+          MessageKeys.dashboardTitle: "Dashboard",
+          MessageKeys.productsTitle: "Products",
+
+          MessageKeys.newOrders: "New Orders",
+          MessageKeys.todaySales: "Today Sales",
+          MessageKeys.newUsers: "New Users",
+
+          MessageKeys.recentOrders: "Recent Orders",
+
+          MessageKeys.productDetail: "Product Detail",
         },
         'ar': {
           MessageKeys.appName: 'Amin Pet Shop',
@@ -82,13 +103,24 @@ class Language extends Translations {
           MessageKeys.viewMore: "عرض المزيد",
 
           MessageKeys.noFound: "لا يوجد",
-          MessageKeys.logoutMessage: "هل أنت متأكد من تسجيل الخروج؟",
+          MessageKeys.logoutButtonTitle: "تسجيل الخروج",
 
           MessageKeys.loginButtonTitle: "تسجيل الدخول",
           MessageKeys.adminPortalLogin: "تسجيل دخول الإدارة",
           MessageKeys.webAdmin: "الموقع الإلكتروني",
           MessageKeys.password: "كلمة المرور",
           MessageKeys.username: "اسم المستخدم",
+
+          MessageKeys.dashboardTitle: "لوحة التحكم",
+          MessageKeys.productsTitle: "المنتجات",
+
+          MessageKeys.newOrders: "طلبات جديدة",
+          MessageKeys.todaySales: "مبيعات اليوم",
+          MessageKeys.newUsers: "مستخدمين جدد",
+
+          MessageKeys.recentOrders: "الطلبات الأخيرة",
+
+          MessageKeys.productDetail: "تفاصيل المنتج",
 
         }
       };
