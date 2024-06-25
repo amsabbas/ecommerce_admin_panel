@@ -16,11 +16,13 @@ class UserEndPoints {
   static EndPoint profileEndPoint({
     Map<String, dynamic>? headers,
     Map<String, dynamic>? data,
+    required String? userToken,
   }) {
     return EndPoint(
         endpoint: "user/profile",
         headers: headers,
         data: data,
+        userToken: userToken,
         method: HttpMethod.get);
   }
 

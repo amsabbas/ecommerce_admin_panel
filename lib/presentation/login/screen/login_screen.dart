@@ -151,6 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState?.validate() ?? false) {
+                        _formKey.currentState?.save();
                         _loginController.login(
                             _formData.username, _formData.password);
                       }

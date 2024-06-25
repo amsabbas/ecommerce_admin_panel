@@ -28,7 +28,7 @@ class AuthManager {
     return await _sharedPref.setString(tokenKey, model.accessToken);
   }
 
-  String? getToken(LoginModel model) {
+  String? getToken() {
     return _sharedPref.getString(tokenKey);
   }
 

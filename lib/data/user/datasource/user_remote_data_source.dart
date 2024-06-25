@@ -18,8 +18,9 @@ class UserRemoteDataSource {
   }
 
   Future<UserModel> profile() async {
+    final userToken = authManager.getToken();
     return service
-        .call(UserEndPoints.profileEndPoint())
+        .call(UserEndPoints.profileEndPoint(userToken:userToken))
         .then((response) => UserModel.fromJson(response));
   }
 }

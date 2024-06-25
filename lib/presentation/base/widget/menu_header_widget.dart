@@ -20,7 +20,7 @@ class MenuHeaderWidget extends StatelessWidget {
           ),
         Text(
           title,
-          style: Theme.of(context).textTheme.titleLarge,
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
         ),
       ],
     );

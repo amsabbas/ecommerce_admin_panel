@@ -26,7 +26,6 @@ class UserController extends GetxController {
     try {
       logoutState.setLoading();
       logoutState.setSuccess(await userInteractor.logout());
-      getSavedUser();
     } catch (error) {
       logoutState.setError(error);
     }

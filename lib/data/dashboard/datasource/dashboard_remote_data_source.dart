@@ -10,8 +10,9 @@ class DashboardRemoteDataSource {
   DashboardRemoteDataSource({required this.service, required this.authManager});
 
   Future<DashboardDataModel> getData() async {
+    final userToken = authManager.getToken();
     return service
-        .call(DashboardEndPoints.dashboardDataEndPoint())
+        .call(DashboardEndPoints.dashboardDataEndPoint(userToken: userToken))
         .then((response) => DashboardDataModel.fromJson(response));
   }
 }

@@ -10,8 +10,9 @@ class OrdersRemoteDataSource {
   OrdersRemoteDataSource({required this.service, required this.authManager});
 
   Future<List<OrderModel>> getRecentOrders() async {
+    final userToken = authManager.getToken();
     return service
-        .call(OrdersEndPoints.getRecentOrdersEndPoint())
+        .call(OrdersEndPoints.getRecentOrdersEndPoint(userToken:userToken))
         .then((response) => response
             .map<OrderModel>((e) => OrderModel.fromJson(e))
             .toList());

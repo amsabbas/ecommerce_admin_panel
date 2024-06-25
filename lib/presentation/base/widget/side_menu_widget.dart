@@ -3,6 +3,7 @@ import 'package:ecommerce_admin/presentation/base/controller/user_controller.dar
 import 'package:ecommerce_admin/presentation/base/language/language.dart';
 import 'package:ecommerce_admin/presentation/base/model/asset_resource.dart';
 import 'package:ecommerce_admin/presentation/base/style/colors.dart';
+import 'package:ecommerce_admin/presentation/login/screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -21,7 +22,14 @@ class SideMenu extends StatelessWidget {
       child: ListView(
         children: [
           DrawerHeader(
-            child: Image.asset(AssetResource.appLogoImagePath),
+            child: CircleAvatar(
+              backgroundColor: AppColors.whiteColor,
+              child: Image.asset(
+                AssetResource.appLogoImagePath,
+                width: 100,
+                height: 100,
+              ),
+            ),
           ),
           DrawerListTile(
             title: MessageKeys.dashboardTitle.tr,
@@ -42,6 +50,7 @@ class SideMenu extends StatelessWidget {
             svgSrc: AssetResource.logoutImagePath,
             press: () {
               userController.logout();
+              Get.to(() => const LoginScreen());
             },
           ),
         ],

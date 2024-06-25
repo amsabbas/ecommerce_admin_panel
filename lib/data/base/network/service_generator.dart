@@ -14,17 +14,16 @@ class ServiceGenerator {
   late final String _baseUrl;
   late final AuthManager _authManager;
   late final SettingsLocalDataSource localDataSource;
-  String? headerContentType;
 
-  ServiceGenerator(this._baseUrl, this._authManager, this.localDataSource,
-      [this.headerContentType]) {
+
+  ServiceGenerator(this._baseUrl, this._authManager, this.localDataSource) {
     createDio();
   }
 
   createDio() {
     _dio = Dio(BaseOptions(
       baseUrl: _baseUrl,
-      contentType: headerContentType ?? Headers.jsonContentType,
+      contentType: Headers.jsonContentType,
       responseType: ResponseType.json,
       receiveDataWhenStatusError: true,
       connectTimeout: const Duration(seconds: 30),

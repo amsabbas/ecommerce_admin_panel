@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:ecommerce_admin/data/dashboard/model/dashboard_data_model.dart';
 import 'package:ecommerce_admin/data/orders/model/order_model.dart';
+import 'package:ecommerce_admin/presentation/base/extension/date_string_extension.dart';
 import 'package:ecommerce_admin/presentation/base/language/language.dart';
 import 'package:ecommerce_admin/presentation/base/model/constants.dart';
 import 'package:ecommerce_admin/presentation/base/style/colors.dart';
@@ -160,19 +161,42 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   List<DataColumn> _dataColumn() {
     return [
-      DataColumn(label: Text(MessageKeys.noColumnTitle.tr), numeric: true),
-      DataColumn(label: Text(MessageKeys.dateColumnTitle.tr)),
-      DataColumn(label: Text(MessageKeys.priceColumnTitle.tr), numeric: true),
+      DataColumn(
+          label: Text(
+            MessageKeys.noColumnTitle.tr,
+            style: Theme.of(context)
+                .textTheme
+                .bodyMedium
+                ?.copyWith(fontWeight: FontWeight.bold),
+          ),
+          numeric: true),
+      DataColumn(
+          label: Text(
+        MessageKeys.dateColumnTitle.tr,
+        style: Theme.of(context)
+            .textTheme
+            .bodyMedium
+            ?.copyWith(fontWeight: FontWeight.bold),
+      )),
+      DataColumn(
+          label: Text(
+            MessageKeys.priceColumnTitle.tr,
+            style: Theme.of(context)
+                .textTheme
+                .bodyMedium
+                ?.copyWith(fontWeight: FontWeight.bold),
+          ),
+          numeric: true),
     ];
   }
 
-  List<DataRow> _dataRow(orders) {
+  List<DataRow> _dataRow(List<OrderModel> orders) {
     return List.generate(orders.length, (index) {
       return DataRow.byIndex(
         index: index,
         cells: [
           DataCell(Text('#${orders[index].id}')),
-          DataCell(Text(orders[index].date)),
+          DataCell(Text(orders[index].date.getFormattedDate())),
           DataCell(Text('${orders[index].total}')),
         ],
       );
