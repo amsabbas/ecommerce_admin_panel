@@ -3,10 +3,10 @@ import 'package:ecommerce_admin/presentation/base/widget/responsive_widget.dart'
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HeaderWidget extends StatelessWidget {
+class MenuHeaderWidget extends StatelessWidget {
   final String title;
 
-  const HeaderWidget({super.key, required this.title});
+  const MenuHeaderWidget({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {

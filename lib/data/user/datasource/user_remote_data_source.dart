@@ -2,6 +2,7 @@ import 'package:ecommerce_admin/data/base/network/service_generator.dart';
 import 'package:ecommerce_admin/data/base/utils/auth_manager.dart';
 import 'package:ecommerce_admin/data/user/datasource/end_points/user_endpoints.dart';
 import 'package:ecommerce_admin/data/user/model/login_model.dart';
+import 'package:ecommerce_admin/data/user/model/user_model.dart';
 
 class UserRemoteDataSource {
   final ServiceGenerator service;
@@ -14,5 +15,11 @@ class UserRemoteDataSource {
     return service
         .call(UserEndPoints.loginEndPoint(data: map))
         .then((response) => LoginModel.fromJson(response));
+  }
+
+  Future<UserModel> profile() async {
+    return service
+        .call(UserEndPoints.profileEndPoint())
+        .then((response) => UserModel.fromJson(response));
   }
 }

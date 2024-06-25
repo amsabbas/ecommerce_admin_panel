@@ -1,5 +1,5 @@
 import 'package:ecommerce_admin/presentation/base/controller/menu_controller.dart';
-import 'package:ecommerce_admin/presentation/base/widget/table_card_header.dart';
+import 'package:ecommerce_admin/presentation/base/language/language.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -27,13 +27,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const pageTitle = 'Product Detail';
+
     return Scaffold(
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
           Text(
-            pageTitle,
+            MessageKeys.productDetail.tr,
             style: Theme.of(context).textTheme.headlineMedium,
           ),
           Padding(
@@ -43,9 +43,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const TableCardHeader(
-                    title: pageTitle,
-                  ),
                   _content(context)
                 ],
               ),

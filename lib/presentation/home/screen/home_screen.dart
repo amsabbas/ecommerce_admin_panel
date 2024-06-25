@@ -1,4 +1,5 @@
 import 'package:ecommerce_admin/presentation/base/controller/menu_controller.dart';
+import 'package:ecommerce_admin/presentation/base/controller/user_controller.dart';
 import 'package:ecommerce_admin/presentation/base/language/language.dart';
 import 'package:ecommerce_admin/presentation/base/widget/responsive_widget.dart';
 import 'package:ecommerce_admin/presentation/base/widget/side_menu_widget.dart';
@@ -16,11 +17,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late final MenuAppController menuController;
+  late final UserController userController;
 
   @override
   void initState() {
     super.initState();
     menuController = Get.find();
+    userController = Get.find();
+    userController.getProfile();
   }
 
   @override

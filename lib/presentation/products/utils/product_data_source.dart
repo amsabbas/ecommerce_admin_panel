@@ -1,35 +1,29 @@
-import 'dart:math';
-
+import 'package:ecommerce_admin/data/products/model/product_model.dart';
+import 'package:ecommerce_admin/presentation/base/language/language.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProductDataSource extends DataTableSource {
-  final void Function(Map<String, dynamic> data) onDetailButtonPressed;
-  final void Function(Map<String, dynamic> data) onDeleteButtonPressed;
+  final void Function(ProductModel data) onDetailButtonPressed;
+  final void Function(ProductModel data) onDeleteButtonPressed;
 
-  final _data = List.generate(200, (index) {
-    return {
-      'id': index + 1,
-      'no': index + 1,
-      'item': 'Item ${index + 1}',
-      'price': Random().nextInt(10000),
-      'date': '2022-06-30',
-    };
-  });
+  final List<ProductModel> data;
 
   ProductDataSource({
+    required this.data,
     required this.onDetailButtonPressed,
     required this.onDeleteButtonPressed,
   });
 
   @override
   DataRow? getRow(int index) {
-    final data = _data[index];
+    final item = data[index];
 
     return DataRow.byIndex(index: index, cells: [
-      DataCell(Text(data['no'].toString())),
-      DataCell(Text(data['item'].toString())),
-      DataCell(Text(data['price'].toString())),
-      DataCell(Text(data['date'].toString())),
+      DataCell(Text(item.id.toString())),
+      DataCell(Text(item.name.toString())),
+      DataCell(Text(item.price.toString())),
+      DataCell(Text(item.quantity.toString())),
       DataCell(Builder(
         builder: (context) {
           return Row(
@@ -38,13 +32,13 @@ class ProductDataSource extends DataTableSource {
               Padding(
                 padding: const EdgeInsets.only(right: 16),
                 child: OutlinedButton(
-                  onPressed: () => onDetailButtonPressed.call(data),
-                  child: const Text("Detail"),
+                  onPressed: () => onDetailButtonPressed.call(item),
+                  child: Text(MessageKeys.editButtonTitle.tr),
                 ),
               ),
               OutlinedButton(
-                onPressed: () => onDeleteButtonPressed.call(data),
-                child: const Text("Delete"),
+                onPressed: () => onDeleteButtonPressed.call(item),
+                child: Text(MessageKeys.deleteButtonTitle.tr),
               ),
             ],
           );
@@ -57,7 +51,7 @@ class ProductDataSource extends DataTableSource {
   bool get isRowCountApproximate => false;
 
   @override
-  int get rowCount => _data.length;
+  int get rowCount => data.length;
 
   @override
   int get selectedRowCount => 0;

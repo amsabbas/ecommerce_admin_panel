@@ -31,24 +31,32 @@ class MessageKeys {
   static const String dashboardTitle = "dashboardTitle";
   static const String productsTitle = "productsTitle";
 
-  static const String newOrders = "newOrders";
-  static const String todaySales = "todaySales";
-  static const String newUsers = "newUsers";
+  static const String dashboardTotalOrders = "dashboardTotalOrders";
+  static const String dashboardTodayOrders = "todayOrders";
+  static const String dashboardTotalUsers = "totalUsers";
 
   static const String recentOrders = "recentOrders";
-
   static const String productDetail = "productDetail";
+
+  static const String noColumnTitle = "noColumnTitle";
+  static const String nameColumnTitle = "nameColumnTitle";
+  static const String dateColumnTitle = "dateColumnTitle";
+  static const String priceColumnTitle = "priceColumnTitle";
+  static const String actionsColumnTitle = "actionsColumnTitle";
+  static const String quantityColumnTitle = "quantityColumnTitle";
+
+  static const String editButtonTitle = "editButtonTitle";
+  static const String deleteButtonTitle = "deleteButtonTitle";
 }
 
 class Language extends Translations {
   @override
-  Map<String, Map<String, String>> get keys =>
-      {
+  Map<String, Map<String, String>> get keys => {
         'en': {
           MessageKeys.appName: 'Amin Pet Shop',
           MessageKeys.alert: 'Attention',
           MessageKeys.networkError:
-          "Please make sure you are connected to the internet",
+              "Please make sure you are connected to the internet",
           MessageKeys.unKnown: "Unknown error, please try again",
           MessageKeys.unAuthorized: "UnAuthorized, please re-login",
           MessageKeys.error: "Error",
@@ -63,7 +71,6 @@ class Language extends Translations {
           MessageKeys.welcome: "Welcome!",
           MessageKeys.noData: "No data",
           MessageKeys.viewMore: "Show more",
-
           MessageKeys.noFound: "Not found",
           MessageKeys.logoutButtonTitle: "Logout",
           MessageKeys.loginButtonTitle: "Login",
@@ -71,17 +78,21 @@ class Language extends Translations {
           MessageKeys.webAdmin: "Web Admin",
           MessageKeys.password: "Password",
           MessageKeys.username: "Username",
-
           MessageKeys.dashboardTitle: "Dashboard",
           MessageKeys.productsTitle: "Products",
-
-          MessageKeys.newOrders: "New Orders",
-          MessageKeys.todaySales: "Today Sales",
-          MessageKeys.newUsers: "New Users",
-
+          MessageKeys.dashboardTotalOrders: "Total Orders",
+          MessageKeys.dashboardTodayOrders: "Today Orders",
+          MessageKeys.dashboardTotalUsers: "Total Users",
           MessageKeys.recentOrders: "Recent Orders",
-
           MessageKeys.productDetail: "Product Detail",
+          MessageKeys.noColumnTitle: "No.",
+          MessageKeys.dateColumnTitle: "Date",
+          MessageKeys.priceColumnTitle: "Price",
+          MessageKeys.nameColumnTitle: "Name",
+          MessageKeys.actionsColumnTitle: "Actions",
+          MessageKeys.quantityColumnTitle: "Quantity",
+          MessageKeys.editButtonTitle: "Edit",
+          MessageKeys.deleteButtonTitle: "Delete",
         },
         'ar': {
           MessageKeys.appName: 'Amin Pet Shop',
@@ -101,27 +112,28 @@ class Language extends Translations {
           MessageKeys.welcome: "مرحبا بك",
           MessageKeys.noData: "لايوجد بيانات",
           MessageKeys.viewMore: "عرض المزيد",
-
           MessageKeys.noFound: "لا يوجد",
           MessageKeys.logoutButtonTitle: "تسجيل الخروج",
-
           MessageKeys.loginButtonTitle: "تسجيل الدخول",
           MessageKeys.adminPortalLogin: "تسجيل دخول الإدارة",
           MessageKeys.webAdmin: "الموقع الإلكتروني",
           MessageKeys.password: "كلمة المرور",
           MessageKeys.username: "اسم المستخدم",
-
           MessageKeys.dashboardTitle: "لوحة التحكم",
           MessageKeys.productsTitle: "المنتجات",
-
-          MessageKeys.newOrders: "طلبات جديدة",
-          MessageKeys.todaySales: "مبيعات اليوم",
-          MessageKeys.newUsers: "مستخدمين جدد",
-
+          MessageKeys.dashboardTotalOrders: "إجمالي الطلبات",
+          MessageKeys.dashboardTodayOrders: "طلبات اليوم",
+          MessageKeys.dashboardTotalUsers: "إجمالي المستخدمين",
           MessageKeys.recentOrders: "الطلبات الأخيرة",
-
           MessageKeys.productDetail: "تفاصيل المنتج",
-
+          MessageKeys.noColumnTitle: "رقم",
+          MessageKeys.dateColumnTitle: "تاريخ",
+          MessageKeys.priceColumnTitle: "السعر",
+          MessageKeys.nameColumnTitle: "الاسم",
+          MessageKeys.actionsColumnTitle: "العمليات",
+          MessageKeys.quantityColumnTitle: "الكمية",
+          MessageKeys.editButtonTitle: "تعديل",
+          MessageKeys.deleteButtonTitle: "حذف",
         }
       };
 }

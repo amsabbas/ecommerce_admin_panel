@@ -1,4 +1,5 @@
 import 'package:ecommerce_admin/presentation/base/controller/menu_controller.dart';
+import 'package:ecommerce_admin/presentation/base/controller/user_controller.dart';
 import 'package:ecommerce_admin/presentation/base/language/language.dart';
 import 'package:ecommerce_admin/presentation/base/model/asset_resource.dart';
 import 'package:ecommerce_admin/presentation/base/style/colors.dart';
@@ -14,6 +15,7 @@ class SideMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MenuAppController menuController = Get.find();
+    UserController userController = Get.find();
     return Drawer(
       elevation: 1,
       child: ListView(
@@ -37,9 +39,9 @@ class SideMenu extends StatelessWidget {
           ),
           DrawerListTile(
             title: MessageKeys.logoutButtonTitle.tr,
-            svgSrc: AssetResource.productsImagePath,
+            svgSrc: AssetResource.logoutImagePath,
             press: () {
-
+              userController.logout();
             },
           ),
         ],

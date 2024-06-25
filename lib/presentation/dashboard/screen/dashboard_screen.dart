@@ -1,14 +1,19 @@
 import 'dart:math';
 
+import 'package:ecommerce_admin/data/dashboard/model/dashboard_data_model.dart';
+import 'package:ecommerce_admin/data/orders/model/order_model.dart';
 import 'package:ecommerce_admin/presentation/base/language/language.dart';
 import 'package:ecommerce_admin/presentation/base/model/constants.dart';
 import 'package:ecommerce_admin/presentation/base/style/colors.dart';
+import 'package:ecommerce_admin/presentation/base/utils/result.dart';
+import 'package:ecommerce_admin/presentation/base/widget/loading_widget.dart';
 import 'package:ecommerce_admin/presentation/base/widget/table_card_header.dart';
+import 'package:ecommerce_admin/presentation/dashboard/controller/dashboard_controller.dart';
 import 'package:ecommerce_admin/presentation/dashboard/widget/dashboard_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../base/widget/header_widget.dart';
+import '../../base/widget/menu_header_widget.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -18,18 +23,35 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  final _dataTableHorizontalScrollController = ScrollController();
+  final _dataTableScrollController = ScrollController();
+  late final DashboardController _dashboardController;
+
+  @override
+  void initState() {
+    super.initState();
+    _dashboardController = Get.find();
+    _dashboardController.getData();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.all(16),
-      children: [_titleWidget(), _infoCards(), _recentOrdersWidget()],
-    );
+    return GetX<DashboardController>(
+        init: _dashboardController, //here
+        builder: (controller) {
+          if (controller.dashboardState.value.state == CurrentState.success) {
+            return ListView(padding: const EdgeInsets.all(16), children: [
+              _titleWidget(),
+              _infoCards(),
+              _recentOrdersWidget()
+            ]);
+          } else {
+            return loadingWidget(context);
+          }
+        });
   }
 
   Widget _titleWidget() {
-    return HeaderWidget(
+    return MenuHeaderWidget(
       title: MessageKeys.dashboardTitle.tr,
     );
   }
@@ -37,6 +59,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget _infoCards() {
     final size = MediaQuery.of(context).size;
     final summaryCardCrossAxisCount = (size.width >= kScreenWidthLg ? 4 : 2);
+    DashboardDataModel data = _dashboardController.dataState.value.data;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: LayoutBuilder(
@@ -44,37 +68,36 @@ class _DashboardScreenState extends State<DashboardScreen> {
           final summaryCardWidth =
               ((constraints.maxWidth - (16 * (summaryCardCrossAxisCount - 1))) /
                   summaryCardCrossAxisCount);
-
           return Wrap(
             direction: Axis.horizontal,
             spacing: 16,
             runSpacing: 16,
             children: [
               DashboardCard(
-                title: MessageKeys.newOrders.tr,
-                value: '150',
+                title: MessageKeys.dashboardTotalOrders.tr,
+                value: data.totalOrders.toString(),
                 icon: Icons.shopping_cart_rounded,
                 backgroundColor: AppColors.orangeColor,
                 textColor: AppColors.whiteColor,
-                iconColor: Colors.black12,
+                iconColor: AppColors.black12,
                 width: summaryCardWidth,
               ),
               DashboardCard(
-                title: MessageKeys.todaySales.tr,
-                value: '+12%',
+                title: MessageKeys.dashboardTodayOrders.tr,
+                value: data.todayOrders.toString(),
                 icon: Icons.ssid_chart_rounded,
                 backgroundColor: AppColors.greenColor,
                 textColor: AppColors.whiteColor,
-                iconColor: Colors.black12,
+                iconColor: AppColors.black12,
                 width: summaryCardWidth,
               ),
               DashboardCard(
-                title: MessageKeys.newUsers.tr,
-                value: '44',
+                title: MessageKeys.dashboardTotalUsers.tr,
+                value: data.totalUsers.toString(),
                 icon: Icons.group_add_rounded,
                 backgroundColor: AppColors.darkGrayColor,
                 textColor: AppColors.whiteColor,
-                iconColor: Colors.black12,
+                iconColor: AppColors.black12,
                 width: summaryCardWidth,
               ),
             ],
@@ -85,6 +108,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   Widget _recentOrdersWidget() {
+    List<OrderModel> orders = _dashboardController.ordersState.value.data;
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
       child: Card(
@@ -94,22 +118,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
           children: [
             TableCardHeader(
               title: MessageKeys.recentOrders.tr,
-              showDivider: false,
+              showDivider: true,
             ),
             SizedBox(
               width: double.infinity,
               child: LayoutBuilder(
                 builder: (context, constraints) {
                   final double dataTableWidth =
-                      max(768.0, constraints.maxWidth);
-
+                      max(kScreenWidthMd, constraints.maxWidth);
                   return Scrollbar(
-                    controller: _dataTableHorizontalScrollController,
+                    controller: _dataTableScrollController,
                     thumbVisibility: true,
                     trackVisibility: true,
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
-                      controller: _dataTableHorizontalScrollController,
+                      controller: _dataTableScrollController,
                       child: SizedBox(
                         width: dataTableWidth,
                         child: Theme(
@@ -119,23 +142,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           child: DataTable(
                             showCheckboxColumn: false,
                             showBottomBorder: true,
-                            columns: const [
-                              DataColumn(label: Text('No.'), numeric: true),
-                              DataColumn(label: Text('Date')),
-                              DataColumn(label: Text('Item')),
-                              DataColumn(label: Text('Price'), numeric: true),
-                            ],
-                            rows: List.generate(5, (index) {
-                              return DataRow.byIndex(
-                                index: index,
-                                cells: [
-                                  DataCell(Text('#${index + 1}')),
-                                  const DataCell(Text('2022-06-30')),
-                                  DataCell(Text('Item ${index + 1}')),
-                                  DataCell(Text('${Random().nextInt(10000)}')),
-                                ],
-                              );
-                            }),
+                            columns: _dataColumn(),
+                            rows: _dataRow(orders),
                           ),
                         ),
                       ),
@@ -150,9 +158,30 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
+  List<DataColumn> _dataColumn() {
+    return [
+      DataColumn(label: Text(MessageKeys.noColumnTitle.tr), numeric: true),
+      DataColumn(label: Text(MessageKeys.dateColumnTitle.tr)),
+      DataColumn(label: Text(MessageKeys.priceColumnTitle.tr), numeric: true),
+    ];
+  }
+
+  List<DataRow> _dataRow(orders) {
+    return List.generate(orders.length, (index) {
+      return DataRow.byIndex(
+        index: index,
+        cells: [
+          DataCell(Text('#${orders[index].id}')),
+          DataCell(Text(orders[index].date)),
+          DataCell(Text('${orders[index].total}')),
+        ],
+      );
+    });
+  }
+
   @override
   void dispose() {
-    _dataTableHorizontalScrollController.dispose();
+    _dataTableScrollController.dispose();
     super.dispose();
   }
 }

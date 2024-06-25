@@ -13,5 +13,15 @@ class UserEndPoints {
         method: HttpMethod.post);
   }
 
+  static EndPoint profileEndPoint({
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? data,
+  }) {
+    return EndPoint(
+        endpoint: "user/profile",
+        headers: headers,
+        data: data,
+        method: HttpMethod.get);
+  }
 
 }

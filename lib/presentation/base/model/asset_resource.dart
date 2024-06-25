@@ -9,5 +9,5 @@ class AssetResource {
   //side-menu
   static const String dashboardImagePath = "${imagePath}sidemenu/menu_dashboard.svg";
   static const String productsImagePath = "${imagePath}sidemenu/menu_products.svg";
-
+  static const String logoutImagePath = "${imagePath}sidemenu/menu_logout.svg";
 }

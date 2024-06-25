@@ -30,6 +30,7 @@ class TableCardHeader extends StatelessWidget {
               title,
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
                 color: titleColor,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
@@ -37,7 +38,7 @@ class TableCardHeader extends StatelessWidget {
             visible: showDivider,
             child: const Divider(
               height: 1.0,
-              thickness: 1.0,
+              thickness: 0.5,
             ),
           ),
         ],

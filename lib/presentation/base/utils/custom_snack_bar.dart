@@ -18,7 +18,7 @@ class CustomSnackBar {
             style: const TextStyle(fontSize: 14, color: AppColors.whiteColor),
           ),
           margin: const EdgeInsets.all(4),
-          maxWidth: Get.width);
+          maxWidth: Get.width/2);
     });
   }
 
@@ -38,7 +38,7 @@ class CustomSnackBar {
             style: const TextStyle(fontSize: 14, color: AppColors.whiteColor),
           ),
           margin: const EdgeInsets.all(4),
-          maxWidth: Get.width);
+          maxWidth: Get.width/2);
     });
   }
 }
