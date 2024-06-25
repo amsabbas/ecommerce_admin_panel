@@ -5,7 +5,8 @@ class MessageKeys {
   static const String networkError = "NetworkError";
   static const String unKnown = "UnKnownError";
   static const String error = "error";
-
+  static const String errorTitle = "errorTitle";
+  static const String errorMessage = "errorMessage";
   static const String unAuthorized = "Unauthorized";
   static const String retry = "retry";
   static const String close = "close";
@@ -60,6 +61,8 @@ class Language extends Translations {
           MessageKeys.unKnown: "Unknown error, please try again",
           MessageKeys.unAuthorized: "UnAuthorized, please re-login",
           MessageKeys.error: "Error",
+          MessageKeys.errorMessage: "Try again later",
+          MessageKeys.errorTitle: "Failed to load page",
           MessageKeys.cancel: "Cancel",
           MessageKeys.success: "Great",
           MessageKeys.accept: "Accept",
@@ -101,6 +104,8 @@ class Language extends Translations {
           MessageKeys.unKnown: "حدث خطأ غير معروف الرجاء إعادة المحاولة",
           MessageKeys.unAuthorized: "يجب إعادة تسجيل الدخول",
           MessageKeys.error: "خطأ",
+          MessageKeys.errorMessage: "حاول مرة أخرى في وقت لاحق",
+          MessageKeys.errorTitle: "فشل تحميل الصفحة",
           MessageKeys.cancel: "إلغاء",
           MessageKeys.close: "إغلاق",
           MessageKeys.ok: "حسنا",

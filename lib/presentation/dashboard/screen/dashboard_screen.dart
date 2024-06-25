@@ -13,7 +13,7 @@ import 'package:ecommerce_admin/presentation/dashboard/controller/dashboard_cont
 import 'package:ecommerce_admin/presentation/dashboard/widget/dashboard_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:ecommerce_admin/presentation/base/widget/error_widget.dart';
 import '../../base/widget/menu_header_widget.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -31,7 +31,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
   void initState() {
     super.initState();
     _dashboardController = Get.find();
-    _dashboardController.getData();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _dashboardController.getData();
+    });
   }
 
   @override
@@ -39,12 +41,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return GetX<DashboardController>(
         init: _dashboardController, //here
         builder: (controller) {
-          if (controller.dashboardState.value.state == CurrentState.success) {
+          var state = controller.dashboardState.value.state;
+          if (state == CurrentState.success) {
             return ListView(padding: const EdgeInsets.all(16), children: [
               _titleWidget(),
               _infoCards(),
               _recentOrdersWidget()
             ]);
+          } else if (state == CurrentState.error) {
+            return AppErrorWidget(
+                title: MessageKeys.errorTitle.tr,
+                message: MessageKeys.errorMessage.tr);
           } else {
             return loadingWidget(context);
           }

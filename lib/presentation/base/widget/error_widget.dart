@@ -3,11 +3,11 @@ import 'package:ecommerce_admin/presentation/base/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
-class ErrorWidget extends StatelessWidget {
+class AppErrorWidget extends StatelessWidget {
   final String title;
   final String message;
-  const ErrorWidget({super.key,required this.title,required this.message});
+
+  const AppErrorWidget({super.key, required this.title, required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +26,8 @@ class ErrorWidget extends StatelessWidget {
                 child: Text(
                   MessageKeys.error.tr,
                   style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                    color: AppColors.orangeColor,
-                  ),
+                        color: AppColors.orangeColor,
+                      ),
                 ),
               ),
               SizedBox(
@@ -40,14 +40,17 @@ class ErrorWidget extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: 8),
                       child: Text(
                         title,
-                        style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                          color: AppColors.orangeColor,
-                        ),
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                              color: AppColors.orangeColor,
+                            ),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 24),
-                      child: Text(message),
+                      child: Text(
+                        message,
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
                     ),
                   ],
                 ),
