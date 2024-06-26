@@ -8,4 +8,9 @@ class CategoryInteractor {
 
   Future<List<CategoryModel>> getAllCategories() async =>
       await repository.getAllCategories();
+
+  Future addCategoryEndPoint(String name) async =>
+      await repository.addCategoryEndPoint(name);
+
+  Future deleteCategoryEndPoint(int id) async =>  await repository.deleteCategoryEndPoint(id);
 }

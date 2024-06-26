@@ -1,4 +1,3 @@
-import 'package:ecommerce_admin/presentation/base/controller/menu_controller.dart';
 import 'package:ecommerce_admin/presentation/base/language/language.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -17,23 +16,20 @@ class ProductDetailScreen extends StatefulWidget {
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
   final _formKey = GlobalKey<FormBuilderState>();
   final _formData = FormData();
-  late final MenuAppController menuAppController;
 
   @override
   void initState() {
     super.initState();
-    menuAppController = Get.find();
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
           Text(
-            MessageKeys.productDetail.tr,
+            MessageKeys.productDetailTitle.tr,
             style: Theme.of(context).textTheme.headlineMedium,
           ),
           Padding(
@@ -42,9 +38,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               clipBehavior: Clip.antiAlias,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _content(context)
-                ],
+                children: [_content(context)],
               ),
             ),
           ),
@@ -61,7 +55,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32,vertical: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
             child: FormBuilderTextField(
               name: 'item',
               decoration: const InputDecoration(
@@ -76,7 +70,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 32,vertical: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
             child: FormBuilderTextField(
               name: 'price',
               decoration: const InputDecoration(
@@ -93,7 +87,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0,horizontal: 16.0),
+            padding:
+                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -141,7 +136,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(width: 16,),
+                const SizedBox(
+                  width: 16,
+                ),
                 SizedBox(
                   height: 40.0,
                   child: ElevatedButton(

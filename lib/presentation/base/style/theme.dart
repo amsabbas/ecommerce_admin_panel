@@ -54,6 +54,16 @@ class CustomTheme {
             ),
             backgroundColor: AppColors.ceruleanBlueColor,
           ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4.0),
+            ),
+            side: const BorderSide(color: AppColors.ceruleanBlueColor),
+          ),
+        ),dataTableTheme: const DataTableThemeData(
+          dividerThickness: 0.4,
         ));
   }
 }

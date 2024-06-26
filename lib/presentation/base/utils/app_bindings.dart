@@ -20,6 +20,7 @@ import 'package:ecommerce_admin/data/user/interactor/user_interactor.dart';
 import 'package:ecommerce_admin/data/user/repository/user_repository_impl.dart';
 import 'package:ecommerce_admin/presentation/base/controller/menu_controller.dart';
 import 'package:ecommerce_admin/presentation/base/controller/user_controller.dart';
+import 'package:ecommerce_admin/presentation/categories/controller/categories_controller.dart';
 import 'package:ecommerce_admin/presentation/dashboard/controller/dashboard_controller.dart';
 import 'package:ecommerce_admin/presentation/login/controller/login_controller.dart';
 import 'package:ecommerce_admin/presentation/products/controller/products_controller.dart';
@@ -82,6 +83,9 @@ class AppBindings extends Bindings {
         remoteDataSource: Get.find<CategoriesRemoteDataSource>()));
     Get.lazyPut(
         () => CategoryInteractor(repository: Get.find<CategoriesRepository>()));
+    Get.lazyPut(
+            () => CategoriesController(
+            categoriesInteractor: Get.find<CategoryInteractor>()));
   }
 
   Future<void> _addProductsDependencies() async {

@@ -22,8 +22,6 @@ class DashboardCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-
     return SizedBox(
       height: 120.0,
       width: width,
@@ -50,17 +48,18 @@ class DashboardCard extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 8),
                     child: Text(
                       value,
-                      style: textTheme.headlineMedium!.copyWith(
-                        color: textColor,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                            color: textColor,
+                            fontWeight: FontWeight.w600,
+                          ),
                     ),
                   ),
                   Text(
                     title,
-                    style: textTheme.labelLarge!.copyWith(
-                      color: textColor,
-                    ),
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(color: textColor),
                   ),
                 ],
               ),

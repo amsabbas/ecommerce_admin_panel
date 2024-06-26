@@ -3,6 +3,7 @@ import 'package:ecommerce_admin/presentation/base/controller/user_controller.dar
 import 'package:ecommerce_admin/presentation/base/language/language.dart';
 import 'package:ecommerce_admin/presentation/base/widget/responsive_widget.dart';
 import 'package:ecommerce_admin/presentation/base/widget/side_menu_widget.dart';
+import 'package:ecommerce_admin/presentation/categories/screen/categories_screen.dart';
 import 'package:ecommerce_admin/presentation/dashboard/screen/dashboard_screen.dart';
 import 'package:ecommerce_admin/presentation/products/screen/products_screen.dart';
 import 'package:flutter/material.dart';
@@ -61,6 +62,8 @@ class _HomeScreenState extends State<HomeScreen> {
         return const DashboardScreen();
       case MessageKeys.productsTitle:
         return const ProductsScreen();
+      case MessageKeys.categoriesTitle:
+        return const CategoriesScreen();
       default:
         return const DashboardScreen();
     }

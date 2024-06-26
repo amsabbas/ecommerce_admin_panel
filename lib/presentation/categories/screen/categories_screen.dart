@@ -1,51 +1,63 @@
 import 'dart:math';
 
+import 'package:ecommerce_admin/data/base/model/app_error_model.dart';
 import 'package:ecommerce_admin/presentation/base/language/language.dart';
 import 'package:ecommerce_admin/presentation/base/model/constants.dart';
+import 'package:ecommerce_admin/presentation/base/utils/custom_loading.dart';
+import 'package:ecommerce_admin/presentation/base/utils/custom_snack_bar.dart';
 import 'package:ecommerce_admin/presentation/base/utils/result.dart';
 import 'package:ecommerce_admin/presentation/base/widget/add_button_widget.dart';
 import 'package:ecommerce_admin/presentation/base/widget/error_widget.dart';
 import 'package:ecommerce_admin/presentation/base/widget/loading_widget.dart';
 import 'package:ecommerce_admin/presentation/base/widget/menu_header_widget.dart';
-import 'package:ecommerce_admin/presentation/products/controller/products_controller.dart';
-import 'package:ecommerce_admin/presentation/products/screen/product_detail_screen.dart';
-import 'package:ecommerce_admin/presentation/products/utils/product_data_source.dart';
+import 'package:ecommerce_admin/presentation/categories/controller/categories_controller.dart';
+import 'package:ecommerce_admin/presentation/categories/screen/category_detail_screen.dart';
+import 'package:ecommerce_admin/presentation/categories/utils/category_data_source.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ProductsScreen extends StatefulWidget {
-  const ProductsScreen({super.key});
+class CategoriesScreen extends StatefulWidget {
+  const CategoriesScreen({super.key});
 
   @override
-  State<ProductsScreen> createState() => _ProductsScreenState();
+  State<CategoriesScreen> createState() => _CategoriesState();
 }
 
-class _ProductsScreenState extends State<ProductsScreen> {
+class _CategoriesState extends State<CategoriesScreen> {
   final _scrollController = ScrollController();
-  late ProductsController _productsController;
-  late ProductDataSource _dataSource;
+  late CategoriesController _categoriesController;
+  late CategoryDataSource _dataSource;
+  late Worker _deleteWorker;
 
   @override
   void initState() {
     super.initState();
-    _productsController = Get.find();
+    _categoriesController = Get.find();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _productsController.getProducts();
+      _categoriesController.getCategories();
     });
+    _deleteWorker = ever(
+        _categoriesController.deleteCategoryState,
+        (ResultData res) => {
+              res.handleState(
+                  onLoading: () => CustomLoading.onLoading(context),
+                  onError: () => _showError(res.error as AppErrorModel),
+                  onSuccess: () => _showSuccess(),
+                  onLoadingFinish: () => CustomLoading.dismissLoading(context))
+            });
   }
 
   @override
   Widget build(BuildContext context) {
-    return GetX<ProductsController>(
-        init: _productsController, //here
+    return GetX<CategoriesController>(
+        init: _categoriesController, //here
         builder: (controller) {
-          var state = controller.productsState.value.state;
+          var state = controller.categoriesState.value.state;
           if (state == CurrentState.success) {
-            _dataSource = ProductDataSource(
-              data: controller.productsState.value.data,
-              onDetailButtonPressed: (data) => {
-                //Get.to(() => const ProductDetailScreen())
-              },
+            _dataSource = CategoryDataSource(
+              data: controller.categoriesState.value.data,
+              onDetailButtonPressed: (data) =>
+                  {_categoriesController.deleteCategory(data.id)},
             );
             return SingleChildScrollView(
               primary: false,
@@ -57,12 +69,11 @@ class _ProductsScreenState extends State<ProductsScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       MenuHeaderWidget(
-                        title: MessageKeys.productsTitle.tr,
+                        title: MessageKeys.categoriesTitle.tr,
                       ),
                       AddButtonWidget(
                         onPressed: () {
-                          Get.to(() => const ProductDetailScreen(),
-                              arguments: null);
+                          Get.to(() => const CategoryDetailScreen());
                         },
                       ),
                     ],
@@ -110,13 +121,11 @@ class _ProductsScreenState extends State<ProductsScreen> {
 
   List<DataColumn> _dataColumn() {
     return [
+
       _generateDataColumn(MessageKeys.noColumnTitle.tr, true),
       _generateDataColumn(MessageKeys.nameColumnTitle.tr, false),
-      _generateDataColumn(MessageKeys.photoColumnTitle.tr, false),
-      _generateDataColumn(MessageKeys.priceColumnTitle.tr, true),
-      _generateDataColumn(MessageKeys.quantityColumnTitle.tr, true),
-      _generateDataColumn(MessageKeys.isAvailableColumnTitle.tr, false),
-      _generateDataColumn(MessageKeys.actionsColumnTitle.tr, false)
+      _generateDataColumn(MessageKeys.actionsColumnTitle.tr, true),
+
     ];
   }
 
@@ -130,5 +139,21 @@ class _ProductsScreenState extends State<ProductsScreen> {
               ?.copyWith(fontWeight: FontWeight.bold),
         ),
         numeric: isNumeric);
+  }
+
+  void _showError(AppErrorModel result) {
+    CustomSnackBar.showFailureSnackBar(
+        title: MessageKeys.error.tr,
+        message: result.message ?? MessageKeys.unKnown.tr);
+  }
+
+  void _showSuccess() {
+    _categoriesController.getCategories();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _deleteWorker.dispose();
   }
 }

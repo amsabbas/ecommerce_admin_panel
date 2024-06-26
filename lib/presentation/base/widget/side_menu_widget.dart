@@ -38,6 +38,15 @@ class SideMenu extends StatelessWidget {
               menuController.selectedMenu.value = MessageKeys.dashboardTitle;
             },
           ),
+          const Divider(thickness: 0.2,),
+          DrawerListTile(
+            title: MessageKeys.categoriesTitle.tr,
+            svgSrc: AssetResource.categoriesImagePath,
+            press: () {
+              menuController.selectedMenu.value = MessageKeys.categoriesTitle;
+            },
+          ),
+          const Divider(thickness: 0.2,),
           DrawerListTile(
             title: MessageKeys.productsTitle.tr,
             svgSrc: AssetResource.productsImagePath,
@@ -45,6 +54,7 @@ class SideMenu extends StatelessWidget {
               menuController.selectedMenu.value = MessageKeys.productsTitle;
             },
           ),
+          const Divider(thickness: 0.2,),
           DrawerListTile(
             title: MessageKeys.logoutButtonTitle.tr,
             svgSrc: AssetResource.logoutImagePath,
@@ -82,7 +92,10 @@ class DrawerListTile extends StatelessWidget {
       ),
       title: Text(
         title,
-        style: const TextStyle(color: AppColors.ceruleanBlueColor),
+        style:Theme.of(context)
+          .textTheme
+          .bodyMedium
+          ?.copyWith(color:AppColors.ceruleanBlueColor),
       ),
     );
   }

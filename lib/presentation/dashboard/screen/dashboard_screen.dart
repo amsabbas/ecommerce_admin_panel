@@ -7,13 +7,14 @@ import 'package:ecommerce_admin/presentation/base/language/language.dart';
 import 'package:ecommerce_admin/presentation/base/model/constants.dart';
 import 'package:ecommerce_admin/presentation/base/style/colors.dart';
 import 'package:ecommerce_admin/presentation/base/utils/result.dart';
+import 'package:ecommerce_admin/presentation/base/widget/error_widget.dart';
 import 'package:ecommerce_admin/presentation/base/widget/loading_widget.dart';
 import 'package:ecommerce_admin/presentation/base/widget/table_card_header.dart';
 import 'package:ecommerce_admin/presentation/dashboard/controller/dashboard_controller.dart';
 import 'package:ecommerce_admin/presentation/dashboard/widget/dashboard_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ecommerce_admin/presentation/base/widget/error_widget.dart';
+
 import '../../base/widget/menu_header_widget.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -143,16 +144,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       controller: _dataTableScrollController,
                       child: SizedBox(
                         width: dataTableWidth,
-                        child: Theme(
-                          data: Theme.of(context).copyWith(
-                            dividerColor: AppColors.lightGrayColor,
-                          ),
-                          child: DataTable(
-                            showCheckboxColumn: false,
-                            showBottomBorder: true,
-                            columns: _dataColumn(),
-                            rows: _dataRow(orders),
-                          ),
+                        child: DataTable(
+                          showCheckboxColumn: false,
+                          showBottomBorder: true,
+                          columns: _dataColumn(),
+                          rows: _dataRow(orders),
                         ),
                       ),
                     ),
@@ -168,33 +164,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   List<DataColumn> _dataColumn() {
     return [
-      DataColumn(
-          label: Text(
-            MessageKeys.noColumnTitle.tr,
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium
-                ?.copyWith(fontWeight: FontWeight.bold),
-          ),
-          numeric: true),
-      DataColumn(
-          label: Text(
-        MessageKeys.dateColumnTitle.tr,
-        style: Theme.of(context)
-            .textTheme
-            .bodyMedium
-            ?.copyWith(fontWeight: FontWeight.bold),
-      )),
-      DataColumn(
-          label: Text(
-            MessageKeys.priceColumnTitle.tr,
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium
-                ?.copyWith(fontWeight: FontWeight.bold),
-          ),
-          numeric: true),
+      _generateDataColumn(MessageKeys.noColumnTitle.tr, true),
+      _generateDataColumn(MessageKeys.dateColumnTitle.tr, false),
+      _generateDataColumn(MessageKeys.priceColumnTitle.tr, true)
     ];
+  }
+
+  DataColumn _generateDataColumn(String text, bool isNumeric) {
+    return DataColumn(
+        label: Text(
+          text,
+          style: Theme.of(context)
+              .textTheme
+              .bodyMedium
+              ?.copyWith(fontWeight: FontWeight.bold),
+        ),
+        numeric: isNumeric);
   }
 
   List<DataRow> _dataRow(List<OrderModel> orders) {
