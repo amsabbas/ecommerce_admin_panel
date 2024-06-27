@@ -21,10 +21,10 @@ class ActionButtonWidget extends StatelessWidget {
       child: SizedBox(
         height: 40.0,
         child: ElevatedButton(
-          onPressed: () =>
-          {
-            onPressed.call()
-          },
+          style: OutlinedButton.styleFrom(
+            elevation: 0,
+          ),
+          onPressed: () => {onPressed.call()},
           child: Row(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -34,16 +34,14 @@ class ActionButtonWidget extends StatelessWidget {
                 size: 20,
               ),
               const SizedBox(width: 4),
-              Text(title, style: Theme
-                  .of(context)
-                  .textTheme
-                  .bodyMedium
-                  ?.copyWith(
-                color: Colors.white,
-              ))
+              Text(title,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Colors.white,
+                      ))
             ],
           ),
         ),
-      ),);
+      ),
+    );
   }
 }

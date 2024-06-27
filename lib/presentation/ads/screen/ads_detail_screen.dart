@@ -127,6 +127,7 @@ class _AdDetailScreenState extends State<AdDetailScreen> {
                       );
                     }
                   }),
+              const SizedBox( width: 8),
               TextButton(
                 child: Text(MessageKeys.chooseFileTitle.tr),
                 onPressed: () async {
