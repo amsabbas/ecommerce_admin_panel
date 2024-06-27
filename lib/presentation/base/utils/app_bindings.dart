@@ -12,6 +12,9 @@ import 'package:ecommerce_admin/data/categories/repository/categories_repository
 import 'package:ecommerce_admin/data/dashboard/datasource/dashboard_remote_data_source.dart';
 import 'package:ecommerce_admin/data/dashboard/interactor/dashboard_interactor.dart';
 import 'package:ecommerce_admin/data/dashboard/repository/dashboard_repository_impl.dart';
+import 'package:ecommerce_admin/data/file/datasource/file_remote_data_source.dart';
+import 'package:ecommerce_admin/data/file/interactor/file_interactor.dart';
+import 'package:ecommerce_admin/data/file/repository/file_repository_impl.dart';
 import 'package:ecommerce_admin/data/orders/datasource/orders_remote_data_source.dart';
 import 'package:ecommerce_admin/data/orders/interactor/orders_interactor.dart';
 import 'package:ecommerce_admin/data/orders/repository/orders_repository_impl.dart';
@@ -38,6 +41,7 @@ class AppBindings extends Bindings {
   Future<void> dependencies() async {
     await _addGeneralDependencies();
     await _addAdsDependencies();
+    await _addFileDependencies();
     await _addCategoriesDependencies();
     await _addProductsDependencies();
     await _addOrdersDependencies();
@@ -87,7 +91,18 @@ class AppBindings extends Bindings {
     Get.lazyPut(
         () => AdsRepository(remoteDataSource: Get.find<AdsRemoteDataSource>()));
     Get.lazyPut(() => AdsInteractor(repository: Get.find<AdsRepository>()));
-    Get.lazyPut(() => AdsController(adsInteractor: Get.find<AdsInteractor>()));
+    Get.lazyPut(() => AdsController(
+        adsInteractor: Get.find<AdsInteractor>(),
+        fileInteractor: Get.find<FileInteractor>()));
+  }
+
+  Future<void> _addFileDependencies() async {
+    Get.lazyPut(() => FileRemoteDataSource(
+        service: Get.find<ServiceGenerator>(),
+        authManager: Get.find<AuthManager>()));
+    Get.lazyPut(() =>
+        FileRepository(remoteDataSource: Get.find<FileRemoteDataSource>()));
+    Get.lazyPut(() => FileInteractor(repository: Get.find<FileRepository>()));
   }
 
   Future<void> _addCategoriesDependencies() async {

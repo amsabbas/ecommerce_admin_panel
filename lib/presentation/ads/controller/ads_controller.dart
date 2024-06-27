@@ -1,5 +1,7 @@
 import 'package:ecommerce_admin/data/ads/interactor/ads_interactor.dart';
 import 'package:ecommerce_admin/data/base/model/app_error_model.dart';
+import 'package:ecommerce_admin/data/file/interactor/file_interactor.dart';
+import 'package:ecommerce_admin/data/file/model/file_model.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -12,10 +14,11 @@ class AdsController extends GetxController {
   final deleteAdState = ResultState();
 
   late final AdsInteractor adsInteractor;
+  late final FileInteractor fileInteractor;
 
   Rx<XFile?> pickedFile = Rx(null);
 
-  AdsController({required this.adsInteractor});
+  AdsController({required this.adsInteractor, required this.fileInteractor});
 
   void getAds() async {
     try {
@@ -34,7 +37,9 @@ class AdsController extends GetxController {
     }
     try {
       addAdState.setLoading();
-      addAdState.setSuccess(await adsInteractor.addAd(pickedFile.value!.path));
+      FileModel model =
+          await fileInteractor.upload(await pickedFile.value!.readAsBytes());
+      addAdState.setSuccess(await adsInteractor.addAd(model.filename));
     } catch (error, errorStack) {
       AppLogger.error(error: error, errorStack: errorStack);
       addAdState.setError(error);
@@ -44,7 +49,6 @@ class AdsController extends GetxController {
   void deleteAd(int id) async {
     try {
       deleteAdState.setLoading();
-
       deleteAdState.setSuccess(await adsInteractor.deleteAd(id));
     } catch (error, errorStack) {
       AppLogger.error(error: error, errorStack: errorStack);
@@ -54,16 +58,16 @@ class AdsController extends GetxController {
 
   Future<void> pickImage() async {
     final ImagePicker picker = ImagePicker();
-    pickedFile.value = (await picker.pickImage(
+    pickedFile.value = await picker.pickImage(
       source: ImageSource.gallery,
       imageQuality: 100,
-    ))!;
+    );
   }
 
   @override
   void dispose() {
     super.dispose();
-    addAdState.close();
+    adsState.close();
     addAdState.close();
     deleteAdState.close();
   }

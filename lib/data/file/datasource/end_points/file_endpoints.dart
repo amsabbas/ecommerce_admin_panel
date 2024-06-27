@@ -11,6 +11,7 @@ class FileEndPoints {
         endpoint: "file/upload",
         headers: headers,
         data: data,
+        type: HttpType.formData,
         userToken: userToken,
         method: HttpMethod.post);
   }
