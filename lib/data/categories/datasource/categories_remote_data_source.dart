@@ -17,14 +17,14 @@ class CategoriesRemoteDataSource {
             .toList());
   }
 
-  Future addCategoryEndPoint(String name) async {
+  Future addCategory(String name) async {
     Map<String, String> map = {'name': name};
     final userToken = authManager.getToken();
     return service.call(CategoriesEndPoints.addCategoryEndPoint(
         userToken: userToken, data: map));
   }
 
-  Future deleteCategoryEndPoint(int id) async {
+  Future deleteCategory(int id) async {
     final userToken = authManager.getToken();
     return service.call(CategoriesEndPoints.deleteCategoryEndPoint(
         id: id, userToken: userToken));

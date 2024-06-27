@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:ecommerce_admin/data/base/model/app_error_model.dart';
 import 'package:ecommerce_admin/presentation/base/language/language.dart';
 import 'package:ecommerce_admin/presentation/base/model/constants.dart';
+import 'package:ecommerce_admin/presentation/base/utils/custom_dialogs.dart';
 import 'package:ecommerce_admin/presentation/base/utils/custom_loading.dart';
 import 'package:ecommerce_admin/presentation/base/utils/custom_snack_bar.dart';
 import 'package:ecommerce_admin/presentation/base/utils/result.dart';
@@ -56,8 +57,17 @@ class _CategoriesState extends State<CategoriesScreen> {
           if (state == CurrentState.success) {
             _dataSource = CategoryDataSource(
               data: controller.categoriesState.value.data,
-              onDetailButtonPressed: (data) =>
-                  {_categoriesController.deleteCategory(data.id)},
+              onDetailButtonPressed: (data) => {
+                CustomDialogs.showConfirmationDialog(
+                    context: context,
+                    title: MessageKeys.deleteTitle.tr,
+                    message: MessageKeys.deleteMessage.tr,
+                    positiveButtonTitle: MessageKeys.ok.tr,
+                    negativeButtonTitle: MessageKeys.cancel.tr,
+                    positiveCallBack: () {
+                      _categoriesController.deleteCategory(data.id);
+                    })
+              },
             );
             return SingleChildScrollView(
               primary: false,
@@ -121,11 +131,9 @@ class _CategoriesState extends State<CategoriesScreen> {
 
   List<DataColumn> _dataColumn() {
     return [
-
       _generateDataColumn(MessageKeys.noColumnTitle.tr, true),
       _generateDataColumn(MessageKeys.nameColumnTitle.tr, false),
       _generateDataColumn(MessageKeys.actionsColumnTitle.tr, true),
-
     ];
   }
 

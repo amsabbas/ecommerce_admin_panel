@@ -33,7 +33,9 @@ class MessageKeys {
   static const String dashboardTitle = "dashboardTitle";
   static const String productsTitle = "productsTitle";
   static const String categoriesTitle = "categoriesTitle";
+  static const String adsTitle = "adsTitle";
   static const String categoryDetailTitle = "categoryDetailTitle";
+  static const String addAddTitle = "addAddTitle";
   static const String addCategoryTitle = "addCategoryTitle";
   static const String addProductTitle = "addProductTitle";
   static const String productDetailTitle = "productDetail";
@@ -52,9 +54,13 @@ class MessageKeys {
   static const String actionsColumnTitle = "actionsColumnTitle";
   static const String quantityColumnTitle = "quantityColumnTitle";
   static const String photoColumnTitle = "photoColumnTitle";
+  static const String chooseFileTitle = "chooseFileTitle";
   static const String isAvailableColumnTitle = "isAvailableColumnTitle";
 
   static const String categoryNameTitle = "categoryNameTitle";
+
+  static const String deleteTitle = "deleteTitle";
+  static const String deleteMessage = "deleteMessage";
 
   static const String addButtonTitle  = "addButtonTitle";
   static const String editButtonTitle = "editButtonTitle";
@@ -96,8 +102,10 @@ class Language extends Translations {
           MessageKeys.username: "Username",
           MessageKeys.dashboardTitle: "Dashboard",
           MessageKeys.productsTitle: "Products",
+          MessageKeys.adsTitle: "Ads",
           MessageKeys.categoryDetailTitle: "Category Detail",
           MessageKeys.addCategoryTitle: "Add Category",
+          MessageKeys.addAddTitle: "Add Ad",
           MessageKeys.addProductTitle: "Add Product",
           MessageKeys.productDetailTitle: "Product Detail",
 
@@ -115,8 +123,12 @@ class Language extends Translations {
           MessageKeys.quantityColumnTitle: "Quantity",
           MessageKeys.isAvailableColumnTitle: "Is Available",
           MessageKeys.photoColumnTitle: "Photo",
+          MessageKeys.chooseFileTitle: "Choose File",
 
           MessageKeys.categoryNameTitle: "Category Name",
+
+          MessageKeys.deleteTitle: "Delete",
+          MessageKeys.deleteMessage: "Are you sure you want to delete this item?",
 
           MessageKeys.editButtonTitle: "Edit",
           MessageKeys.deleteButtonTitle: "Delete",
@@ -153,10 +165,12 @@ class Language extends Translations {
           MessageKeys.username: "اسم المستخدم",
           MessageKeys.dashboardTitle: "لوحة التحكم",
           MessageKeys.productsTitle: "المنتجات",
+          MessageKeys.adsTitle: "الإعلانات",
           MessageKeys.categoriesTitle: "الأقسام",
           MessageKeys.productDetailTitle: "تفاصيل المنتج",
           MessageKeys.categoryDetailTitle: "تفاصيل القسم",
           MessageKeys.addCategoryTitle: "إضافة قسم",
+          MessageKeys.addAddTitle: "إضافة إعلان",
           MessageKeys.addProductTitle: "إضافة منتج",
           MessageKeys.dashboardTotalOrders: "إجمالي الطلبات",
           MessageKeys.dashboardTodayOrders: "طلبات اليوم",
@@ -170,8 +184,11 @@ class Language extends Translations {
           MessageKeys.quantityColumnTitle: "الكمية",
           MessageKeys.isAvailableColumnTitle: "متوفر",
           MessageKeys.photoColumnTitle: "الصورة",
-
+          MessageKeys.chooseFileTitle: "اختر ملف",
           MessageKeys.categoryNameTitle: "اسم القسم",
+
+          MessageKeys.deleteTitle: "حذف",
+          MessageKeys.deleteMessage: "هل أنت متأكد من حذف هذا العنصر؟",
 
           MessageKeys.editButtonTitle: "تعديل",
           MessageKeys.deleteButtonTitle: "حذف",

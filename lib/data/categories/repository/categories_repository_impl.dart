@@ -10,11 +10,11 @@ class CategoriesRepository {
     return await remoteDataSource.getAllCategories();
   }
 
-  Future addCategoryEndPoint(String name) async {
-    return await remoteDataSource.addCategoryEndPoint(name);
+  Future addCategory(String name) async {
+    return await remoteDataSource.addCategory(name);
   }
 
-  Future deleteCategoryEndPoint(int id) async {
-    return await remoteDataSource.deleteCategoryEndPoint(id);
+  Future deleteCategory(int id) async {
+    return await remoteDataSource.deleteCategory(id);
   }
 }

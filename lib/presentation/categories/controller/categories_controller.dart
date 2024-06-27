@@ -1,4 +1,5 @@
 import 'package:ecommerce_admin/data/categories/interactor/category_interactor.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../data/base/utils/app_logger.dart';
@@ -8,6 +9,7 @@ class CategoriesController extends GetxController {
   final categoriesState = ResultState();
   final addCategoryState = ResultState();
   final deleteCategoryState = ResultState();
+  final nameController = TextEditingController();
   late final CategoryInteractor categoriesInteractor;
 
   CategoriesController({required this.categoriesInteractor});
@@ -23,12 +25,12 @@ class CategoriesController extends GetxController {
     }
   }
 
-  void addCategory(String name) async {
+  void addCategory() async {
     try {
       addCategoryState.setLoading();
 
       addCategoryState
-          .setSuccess(await categoriesInteractor.addCategoryEndPoint(name));
+          .setSuccess(await categoriesInteractor.addCategory(nameController.text));
     } catch (error, errorStack) {
       AppLogger.error(error: error, errorStack: errorStack);
       addCategoryState.setError(error);
@@ -40,7 +42,7 @@ class CategoriesController extends GetxController {
       deleteCategoryState.setLoading();
 
       deleteCategoryState
-          .setSuccess(await categoriesInteractor.deleteCategoryEndPoint(id));
+          .setSuccess(await categoriesInteractor.deleteCategory(id));
     } catch (error, errorStack) {
       AppLogger.error(error: error, errorStack: errorStack);
       deleteCategoryState.setError(error);

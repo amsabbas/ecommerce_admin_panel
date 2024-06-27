@@ -1,3 +1,4 @@
+import 'package:ecommerce_admin/presentation/ads/screen/ads_screen.dart';
 import 'package:ecommerce_admin/presentation/base/controller/menu_controller.dart';
 import 'package:ecommerce_admin/presentation/base/controller/user_controller.dart';
 import 'package:ecommerce_admin/presentation/base/language/language.dart';
@@ -62,6 +63,8 @@ class _HomeScreenState extends State<HomeScreen> {
         return const DashboardScreen();
       case MessageKeys.productsTitle:
         return const ProductsScreen();
+      case MessageKeys.adsTitle:
+        return const AdsScreen();
       case MessageKeys.categoriesTitle:
         return const CategoriesScreen();
       default:

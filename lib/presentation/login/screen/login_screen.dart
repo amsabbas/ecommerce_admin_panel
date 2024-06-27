@@ -12,7 +12,6 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 
 import '../../base/language/language.dart';
-import '../model/form_data.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -25,7 +24,6 @@ class _LoginScreenState extends State<LoginScreen> {
   late final LoginController _loginController;
   late final Worker _loginWorker;
   final _formKey = GlobalKey<FormBuilderState>();
-  final _formData = FormLoginData();
 
   @override
   void initState() {
@@ -116,6 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: const EdgeInsets.only(bottom: 24),
                 child: FormBuilderTextField(
                   name: MessageKeys.username,
+                  controller: _loginController.emailController,
                   decoration: InputDecoration(
                     labelText: MessageKeys.username.tr,
                     hintText: MessageKeys.username.tr,
@@ -124,13 +123,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   enableSuggestions: false,
                   validator: FormBuilderValidators.required(),
-                  onSaved: (value) => (_formData.username = value ?? ''),
+                  onSaved: (value) => (_loginController.emailController.text = value ?? ''),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 32),
                 child: FormBuilderTextField(
                   name: MessageKeys.password,
+                  controller: _loginController.passwordController,
                   decoration: InputDecoration(
                     labelText: MessageKeys.password.tr,
                     hintText: MessageKeys.password.tr,
@@ -140,7 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   enableSuggestions: false,
                   obscureText: true,
                   validator: FormBuilderValidators.required(),
-                  onSaved: (value) => (_formData.password = value ?? ''),
+                  onSaved: (value) => ( _loginController.passwordController.text= value ?? ''),
                 ),
               ),
               Padding(
@@ -152,8 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       if (_formKey.currentState?.validate() ?? false) {
                         _formKey.currentState?.save();
-                        _loginController.login(
-                            _formData.username, _formData.password);
+                        _loginController.login();
                       }
                     },
                     child: Text(MessageKeys.loginButtonTitle.tr),

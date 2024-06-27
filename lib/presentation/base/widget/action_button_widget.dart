@@ -29,13 +29,11 @@ class ActionButtonWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8),
-                child: Icon(
-                  icon,
-                  size: 24,
-                ),
+              Icon(
+                icon,
+                size: 20,
               ),
+              const SizedBox(width: 4),
               Text(title, style: Theme
                   .of(context)
                   .textTheme
