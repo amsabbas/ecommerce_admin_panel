@@ -142,9 +142,9 @@ class _PromoDetailScreenState extends State<PromoDetailScreen> {
               [AppColors.greenColor],
               [AppColors.redColor]
             ],
-            activeFgColor: Colors.white,
-            inactiveBgColor: Colors.grey,
-            inactiveFgColor: Colors.white,
+            activeFgColor: AppColors.whiteColor,
+            inactiveBgColor: AppColors.darkGrayColor,
+            inactiveFgColor: AppColors.whiteColor,
             initialLabelIndex: _promosController.isAvailable.value ? 0 : 1,
             totalSwitches: 2,
             labels: [MessageKeys.yes.tr, MessageKeys.no.tr],
