@@ -4,7 +4,7 @@ import '../language/language.dart';
 
 extension StringExtension on String? {
   String isAvailable() {
-    if (this == "1") {
+    if (this == "true") {
       return MessageKeys.yes.tr;
     } else {
       return MessageKeys.no.tr;

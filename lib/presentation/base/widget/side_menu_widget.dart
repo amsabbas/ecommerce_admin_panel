@@ -56,6 +56,14 @@ class SideMenu extends StatelessWidget {
           ),
           const Divider(thickness: 0.2,),
           DrawerListTile(
+            title: MessageKeys.promosTitle.tr,
+            svgSrc: AssetResource.promosImagePath,
+            press: () {
+              menuController.selectedMenu.value = MessageKeys.promosTitle;
+            },
+          ),
+          const Divider(thickness: 0.2,),
+          DrawerListTile(
             title: MessageKeys.productsTitle.tr,
             svgSrc: AssetResource.productsImagePath,
             press: () {

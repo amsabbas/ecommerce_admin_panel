@@ -2,6 +2,7 @@ import 'package:ecommerce_admin/data/ads/interactor/ads_interactor.dart';
 import 'package:ecommerce_admin/data/base/model/app_error_model.dart';
 import 'package:ecommerce_admin/data/file/interactor/file_interactor.dart';
 import 'package:ecommerce_admin/data/file/model/file_model.dart';
+import 'package:ecommerce_admin/presentation/base/language/language.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -32,7 +33,7 @@ class AdsController extends GetxController {
 
   void addAd() async {
     if (pickedFile.value?.path == null) {
-      addAdState.setError(AppErrorModel('Please select an image'));
+      addAdState.setError(AppErrorModel(MessageKeys.imageValidationMessage.tr));
       return;
     }
     try {

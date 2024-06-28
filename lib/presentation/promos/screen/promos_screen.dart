@@ -1,49 +1,74 @@
 import 'dart:math';
 
+import 'package:ecommerce_admin/data/base/model/app_error_model.dart';
 import 'package:ecommerce_admin/presentation/base/language/language.dart';
 import 'package:ecommerce_admin/presentation/base/model/constants.dart';
+import 'package:ecommerce_admin/presentation/base/utils/custom_dialogs.dart';
+import 'package:ecommerce_admin/presentation/base/utils/custom_loading.dart';
+import 'package:ecommerce_admin/presentation/base/utils/custom_snack_bar.dart';
 import 'package:ecommerce_admin/presentation/base/utils/result.dart';
 import 'package:ecommerce_admin/presentation/base/widget/add_button_widget.dart';
 import 'package:ecommerce_admin/presentation/base/widget/error_widget.dart';
 import 'package:ecommerce_admin/presentation/base/widget/loading_widget.dart';
 import 'package:ecommerce_admin/presentation/base/widget/menu_header_widget.dart';
-import 'package:ecommerce_admin/presentation/products/controller/products_controller.dart';
-import 'package:ecommerce_admin/presentation/products/utils/product_data_source.dart';
+import 'package:ecommerce_admin/presentation/promos/controller/promos_controller.dart';
+import 'package:ecommerce_admin/presentation/promos/screen/promo_detail_screen.dart';
+import 'package:ecommerce_admin/presentation/promos/utils/promo_data_source.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ProductsScreen extends StatefulWidget {
-  const ProductsScreen({super.key});
+class PromosScreen extends StatefulWidget {
+  const PromosScreen({super.key});
 
   @override
-  State<ProductsScreen> createState() => _ProductsScreenState();
+  State<PromosScreen> createState() => _PromosScreenState();
 }
 
-class _ProductsScreenState extends State<ProductsScreen> {
+class _PromosScreenState extends State<PromosScreen> {
   final _scrollController = ScrollController();
-  late ProductsController _productsController;
-  late ProductDataSource _dataSource;
+  late PromosController _promosController;
+  late PromoDataSource _dataSource;
+  late Worker _deleteWorker;
 
   @override
   void initState() {
     super.initState();
-    _productsController = Get.find();
+    _promosController = Get.find();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _productsController.getProducts();
+      _promosController.getPromos();
     });
+    _deleteWorker = ever(
+        _promosController.deletePromoState,
+        (ResultData res) => {
+              res.handleState(
+                  onLoading: () => CustomLoading.onLoading(context),
+                  onError: () => _showError(res.error as AppErrorModel),
+                  onSuccess: () => _showSuccess(),
+                  onLoadingFinish: () => CustomLoading.dismissLoading(context))
+            });
   }
 
   @override
   Widget build(BuildContext context) {
-    return GetX<ProductsController>(
-        init: _productsController, //here
+    return GetX<PromosController>(
+        init: _promosController, //here
         builder: (controller) {
-          var state = controller.productsState.value.state;
+          var state = controller.promosState.value.state;
           if (state == CurrentState.success) {
-            _dataSource = ProductDataSource(
-              data: controller.productsState.value.data,
-              onDetailButtonPressed: (data) => {
-                //Get.to(() => const ProductDetailScreen())
+            _dataSource = PromoDataSource(
+              data: controller.promosState.value.data,
+              onDetailButtonPressed: (data) =>
+                  {Get.to(() => const PromoDetailScreen(), arguments: data)},
+              onDeleteButtonPressed: (data) => {
+                CustomDialogs.showConfirmationDialog(
+                    context: context,
+                    title: MessageKeys.deleteTitle.tr,
+                    message: MessageKeys.deleteMessage.tr,
+                    positiveButtonTitle: MessageKeys.ok.tr,
+                    negativeButtonTitle: MessageKeys.cancel.tr,
+                    positiveCallBack: () {
+                      _promosController.deletePromo(data.id!);
+                    })
               },
             );
             return SingleChildScrollView(
@@ -56,12 +81,11 @@ class _ProductsScreenState extends State<ProductsScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       MenuHeaderWidget(
-                        title: MessageKeys.productsTitle.tr,
+                        title: MessageKeys.promosTitle.tr,
                       ),
                       AddButtonWidget(
                         onPressed: () {
-                          // Get.to(() => const ProductDetailScreen(),
-                          //     arguments: null);
+                          Get.to(() => const PromoDetailScreen());
                         },
                       ),
                     ],
@@ -110,10 +134,8 @@ class _ProductsScreenState extends State<ProductsScreen> {
   List<DataColumn> _dataColumn() {
     return [
       _generateDataColumn(MessageKeys.noColumnTitle.tr, false),
-      _generateDataColumn(MessageKeys.nameColumnTitle.tr, false),
-      _generateDataColumn(MessageKeys.photoColumnTitle.tr, false),
-      _generateDataColumn(MessageKeys.priceColumnTitle.tr, false),
-      _generateDataColumn(MessageKeys.quantityColumnTitle.tr, false),
+      _generateDataColumn(MessageKeys.codeColumnTitle.tr, false),
+      _generateDataColumn(MessageKeys.discountColumnTitle.tr, false),
       _generateDataColumn(MessageKeys.isAvailableColumnTitle.tr, false),
       _generateDataColumn(MessageKeys.actionsColumnTitle.tr, false)
     ];
@@ -129,5 +151,21 @@ class _ProductsScreenState extends State<ProductsScreen> {
               ?.copyWith(fontWeight: FontWeight.bold),
         ),
         numeric: isNumeric);
+  }
+
+  void _showError(AppErrorModel result) {
+    CustomSnackBar.showFailureSnackBar(
+        title: MessageKeys.error.tr,
+        message: result.message ?? MessageKeys.unKnown.tr);
+  }
+
+  void _showSuccess() {
+    _promosController.getPromos();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _deleteWorker.dispose();
   }
 }

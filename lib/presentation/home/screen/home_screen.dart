@@ -7,6 +7,7 @@ import 'package:ecommerce_admin/presentation/base/widget/side_menu_widget.dart';
 import 'package:ecommerce_admin/presentation/categories/screen/categories_screen.dart';
 import 'package:ecommerce_admin/presentation/dashboard/screen/dashboard_screen.dart';
 import 'package:ecommerce_admin/presentation/products/screen/products_screen.dart';
+import 'package:ecommerce_admin/presentation/promos/screen/promos_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -67,6 +68,8 @@ class _HomeScreenState extends State<HomeScreen> {
         return const AdsScreen();
       case MessageKeys.categoriesTitle:
         return const CategoriesScreen();
+      case MessageKeys.promosTitle:
+        return const PromosScreen();
       default:
         return const DashboardScreen();
     }

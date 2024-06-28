@@ -21,6 +21,9 @@ import 'package:ecommerce_admin/data/orders/repository/orders_repository_impl.da
 import 'package:ecommerce_admin/data/products/datasource/products_remote_data_source.dart';
 import 'package:ecommerce_admin/data/products/interactor/products_interactor.dart';
 import 'package:ecommerce_admin/data/products/repository/products_repository_impl.dart';
+import 'package:ecommerce_admin/data/promos/datasource/promo_remote_data_source.dart';
+import 'package:ecommerce_admin/data/promos/interactor/promo_interactor.dart';
+import 'package:ecommerce_admin/data/promos/repository/promo_repository_impl.dart';
 import 'package:ecommerce_admin/data/user/datasource/user_remote_data_source.dart';
 import 'package:ecommerce_admin/data/user/interactor/user_interactor.dart';
 import 'package:ecommerce_admin/data/user/repository/user_repository_impl.dart';
@@ -31,6 +34,7 @@ import 'package:ecommerce_admin/presentation/categories/controller/categories_co
 import 'package:ecommerce_admin/presentation/dashboard/controller/dashboard_controller.dart';
 import 'package:ecommerce_admin/presentation/login/controller/login_controller.dart';
 import 'package:ecommerce_admin/presentation/products/controller/products_controller.dart';
+import 'package:ecommerce_admin/presentation/promos/controller/promos_controller.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -41,6 +45,7 @@ class AppBindings extends Bindings {
   Future<void> dependencies() async {
     await _addGeneralDependencies();
     await _addAdsDependencies();
+    await _addPromosDependencies();
     await _addFileDependencies();
     await _addCategoriesDependencies();
     await _addProductsDependencies();
@@ -82,6 +87,17 @@ class AppBindings extends Bindings {
     );
 
     Get.lazyPut(() => MenuAppController());
+  }
+
+  Future<void> _addPromosDependencies() async {
+    Get.lazyPut(() => PromoRemoteDataSource(
+        service: Get.find<ServiceGenerator>(),
+        authManager: Get.find<AuthManager>()));
+    Get.lazyPut(() =>
+        PromoRepository(remoteDataSource: Get.find<PromoRemoteDataSource>()));
+    Get.lazyPut(() => PromoInteractor(repository: Get.find<PromoRepository>()));
+    Get.lazyPut(
+        () => PromosController(promoInteractor: Get.find<PromoInteractor>()));
   }
 
   Future<void> _addAdsDependencies() async {
