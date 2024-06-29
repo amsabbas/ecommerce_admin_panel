@@ -9,4 +9,16 @@ class ProductsRepository {
   Future<List<ProductModel>> getAllProductsEndPoint() async {
     return await remoteDataSource.getAllProductsEndPoint();
   }
+
+  Future addProduct(ProductModel productModel) async {
+    return await remoteDataSource.addProduct(productModel);
+  }
+
+  Future editProduct(ProductModel productModel) async {
+    return await remoteDataSource.editProduct(productModel);
+  }
+
+  Future deleteProduct(int id) async {
+    return await remoteDataSource.deleteProduct(id);
+  }
 }

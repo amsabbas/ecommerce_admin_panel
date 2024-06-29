@@ -8,4 +8,12 @@ class ProductsInteractor {
 
   Future<List<ProductModel>> getAllProductsEndPoint() async =>
       await repository.getAllProductsEndPoint();
+
+  Future addProduct(ProductModel model) async =>
+      await repository.addProduct(model);
+
+  Future editProduct(ProductModel model) async =>
+      await repository.editProduct(model);
+
+  Future deleteProduct(int id) async => await repository.deleteProduct(id);
 }

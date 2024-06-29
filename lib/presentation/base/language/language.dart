@@ -57,19 +57,28 @@ class MessageKeys {
   static const String discountColumnTitle = "discountColumnTitle";
   static const String actionsColumnTitle = "actionsColumnTitle";
   static const String quantityColumnTitle = "quantityColumnTitle";
+  static const String descColumnTitle = "descColumnTitle";
   static const String photoColumnTitle = "photoColumnTitle";
   static const String chooseFileTitle = "chooseFileTitle";
   static const String isAvailableColumnTitle = "isAvailableColumnTitle";
 
   static const String categoryNameTitle = "categoryNameTitle";
   static const String promoCodeTitle = "promoCodeTitle";
-  static const String promoDiscountTitle = "promoDicountTitle";
+  static const String promoDiscountTitle = "promoDiscountTitle";
+
+  static const String productNameTitle = "productNameTitle";
+  static const String productDescTitle = "productDescTitle";
+  static const String productPriceTitle = "productPriceTitle";
+  static const String productQuantityTitle = "productQuantityTitle";
 
   static const String deleteTitle = "deleteTitle";
   static const String deleteMessage = "deleteMessage";
 
   static const String discountValidationMessage = "discountValidationMessage";
+  static const String priceValidationMessage = "priceValidationMessage";
+  static const String quantityValidationMessage = "quantityValidationMessage";
   static const String imageValidationMessage = "imageValidationMessage";
+  static const String categoryValidationMessage = "categoryValidationMessage";
 
   static const String addButtonTitle  = "addButtonTitle";
   static const String editButtonTitle = "editButtonTitle";
@@ -132,6 +141,7 @@ class Language extends Translations {
           MessageKeys.nameColumnTitle: "Name",
           MessageKeys.actionsColumnTitle: "Actions",
           MessageKeys.quantityColumnTitle: "Quantity",
+          MessageKeys.descColumnTitle: "Description",
           MessageKeys.isAvailableColumnTitle: "Is Available",
           MessageKeys.codeColumnTitle: "Code",
           MessageKeys.discountColumnTitle: "Discount",
@@ -141,12 +151,19 @@ class Language extends Translations {
           MessageKeys.categoryNameTitle: "Category Name",
           MessageKeys.promoCodeTitle: "Promo Code",
           MessageKeys.promoDiscountTitle: "Promo Discount",
+          MessageKeys.productNameTitle: "Product Name",
+          MessageKeys.productDescTitle: "Product Description",
+          MessageKeys.productPriceTitle: "Product Price",
+          MessageKeys.productQuantityTitle: "Product Quantity",
 
           MessageKeys.deleteTitle: "Delete",
           MessageKeys.deleteMessage: "Are you sure you want to delete this item?",
 
           MessageKeys.discountValidationMessage: "Please enter the discount value correctly",
+          MessageKeys.priceValidationMessage: "Please enter the price correctly",
+          MessageKeys.quantityValidationMessage: "Please enter the quantity correctly",
           MessageKeys.imageValidationMessage: "Please select an image",
+          MessageKeys.categoryValidationMessage: "Please select a category",
 
           MessageKeys.editButtonTitle: "Edit",
           MessageKeys.deleteButtonTitle: "Delete",
@@ -200,6 +217,7 @@ class Language extends Translations {
           MessageKeys.dateColumnTitle: "تاريخ",
           MessageKeys.priceColumnTitle: "السعر",
           MessageKeys.nameColumnTitle: "الاسم",
+          MessageKeys.descColumnTitle: "الوصف",
           MessageKeys.actionsColumnTitle: "العمليات",
           MessageKeys.quantityColumnTitle: "الكمية",
           MessageKeys.isAvailableColumnTitle: "متوفر",
@@ -211,12 +229,20 @@ class Language extends Translations {
           MessageKeys.categoryNameTitle: "اسم القسم",
           MessageKeys.promoCodeTitle: "كود العرض",
           MessageKeys.promoDiscountTitle: "نسبة الخصم",
+          MessageKeys.productNameTitle: "اسم المنتج",
+          MessageKeys.productDescTitle: "وصف المنتج",
+          MessageKeys.productPriceTitle: "سعر المنتج",
+          MessageKeys.productQuantityTitle: "كمية المنتج",
+
 
           MessageKeys.deleteTitle: "حذف",
           MessageKeys.deleteMessage: "هل أنت متأكد من حذف هذا العنصر؟",
 
           MessageKeys.discountValidationMessage: "الرجاء إدخال نسبة الخصم بشكل صحيح",
+          MessageKeys.priceValidationMessage: "الرجاء إدخال السعر بشكل صحيح",
+          MessageKeys.quantityValidationMessage: "الرجاء إدخال الكمية بشكل صحيح",
           MessageKeys.imageValidationMessage: "الرجاء اختيار صورة",
+          MessageKeys.categoryValidationMessage: "الرجاء اختيار قسم",
 
           MessageKeys.editButtonTitle: "تعديل",
           MessageKeys.deleteButtonTitle: "حذف",

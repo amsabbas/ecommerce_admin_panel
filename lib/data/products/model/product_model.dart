@@ -6,21 +6,23 @@ part 'product_model.g.dart';
 @JsonSerializable()
 class ProductModel {
   @JsonKey(name: "id")
-  final int id;
+  final int? id;
   @JsonKey(name: "name")
-  final String name;
+  final String? name;
   @JsonKey(name: "description")
-  final String description;
+  final String? description;
   @JsonKey(name: "photo_url")
-  final String photoUrl;
+  final String? photoUrl;
   @JsonKey(name: "category")
-  final CategoryModel category;
+  final CategoryModel? category;
+  @JsonKey(name: "category_id")
+  final int? categoryId;
   @JsonKey(name: "quantity")
-  final int quantity;
+  final int? quantity;
   @JsonKey(name: "is_available")
-  final bool isAvailable;
+  final bool? isAvailable;
   @JsonKey(name: "price")
-  final double price;
+  final double? price;
 
   ProductModel({
     required this.id,
@@ -30,6 +32,7 @@ class ProductModel {
     required this.category,
     required this.quantity,
     required this.isAvailable,
+    required this.categoryId,
     required this.price,
   });
 

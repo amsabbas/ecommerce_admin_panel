@@ -7,6 +7,7 @@ import 'package:ecommerce_admin/presentation/base/language/language.dart';
 import 'package:ecommerce_admin/presentation/base/model/constants.dart';
 import 'package:ecommerce_admin/presentation/base/style/colors.dart';
 import 'package:ecommerce_admin/presentation/base/utils/result.dart';
+import 'package:ecommerce_admin/presentation/base/widget/data_column_text_widget.dart';
 import 'package:ecommerce_admin/presentation/base/widget/error_widget.dart';
 import 'package:ecommerce_admin/presentation/base/widget/loading_widget.dart';
 import 'package:ecommerce_admin/presentation/base/widget/table_card_header.dart';
@@ -164,23 +165,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   List<DataColumn> _dataColumn() {
     return [
-      _generateDataColumn(MessageKeys.noColumnTitle.tr, true),
-      _generateDataColumn(MessageKeys.dateColumnTitle.tr, false),
-      _generateDataColumn(MessageKeys.priceColumnTitle.tr, true)
+      generateDataColumn(context,MessageKeys.noColumnTitle.tr, true),
+      generateDataColumn(context,MessageKeys.dateColumnTitle.tr, false),
+      generateDataColumn(context,MessageKeys.priceColumnTitle.tr, true)
     ];
   }
 
-  DataColumn _generateDataColumn(String text, bool isNumeric) {
-    return DataColumn(
-        label: Text(
-          text,
-          style: Theme.of(context)
-              .textTheme
-              .bodyMedium
-              ?.copyWith(fontWeight: FontWeight.bold),
-        ),
-        numeric: isNumeric);
-  }
+
 
   List<DataRow> _dataRow(List<OrderModel> orders) {
     return List.generate(orders.length, (index) {

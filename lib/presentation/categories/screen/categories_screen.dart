@@ -8,6 +8,7 @@ import 'package:ecommerce_admin/presentation/base/utils/custom_loading.dart';
 import 'package:ecommerce_admin/presentation/base/utils/custom_snack_bar.dart';
 import 'package:ecommerce_admin/presentation/base/utils/result.dart';
 import 'package:ecommerce_admin/presentation/base/widget/add_button_widget.dart';
+import 'package:ecommerce_admin/presentation/base/widget/data_column_text_widget.dart';
 import 'package:ecommerce_admin/presentation/base/widget/error_widget.dart';
 import 'package:ecommerce_admin/presentation/base/widget/loading_widget.dart';
 import 'package:ecommerce_admin/presentation/base/widget/menu_header_widget.dart';
@@ -131,23 +132,13 @@ class _CategoriesState extends State<CategoriesScreen> {
 
   List<DataColumn> _dataColumn() {
     return [
-      _generateDataColumn(MessageKeys.noColumnTitle.tr, true),
-      _generateDataColumn(MessageKeys.nameColumnTitle.tr, false),
-      _generateDataColumn(MessageKeys.actionsColumnTitle.tr, true),
+      generateDataColumn(context,MessageKeys.noColumnTitle.tr, true),
+      generateDataColumn(context,MessageKeys.nameColumnTitle.tr, false),
+      generateDataColumn(context,MessageKeys.actionsColumnTitle.tr, true),
     ];
   }
 
-  DataColumn _generateDataColumn(String text, bool isNumeric) {
-    return DataColumn(
-        label: Text(
-          text,
-          style: Theme.of(context)
-              .textTheme
-              .bodyMedium
-              ?.copyWith(fontWeight: FontWeight.bold),
-        ),
-        numeric: isNumeric);
-  }
+
 
   void _showError(AppErrorModel result) {
     CustomSnackBar.showFailureSnackBar(

@@ -8,6 +8,7 @@ import 'package:ecommerce_admin/presentation/base/utils/custom_loading.dart';
 import 'package:ecommerce_admin/presentation/base/utils/custom_snack_bar.dart';
 import 'package:ecommerce_admin/presentation/base/utils/result.dart';
 import 'package:ecommerce_admin/presentation/base/widget/add_button_widget.dart';
+import 'package:ecommerce_admin/presentation/base/widget/data_column_text_widget.dart';
 import 'package:ecommerce_admin/presentation/base/widget/error_widget.dart';
 import 'package:ecommerce_admin/presentation/base/widget/loading_widget.dart';
 import 'package:ecommerce_admin/presentation/base/widget/menu_header_widget.dart';
@@ -133,25 +134,14 @@ class _PromosScreenState extends State<PromosScreen> {
 
   List<DataColumn> _dataColumn() {
     return [
-      _generateDataColumn(MessageKeys.noColumnTitle.tr, false),
-      _generateDataColumn(MessageKeys.codeColumnTitle.tr, false),
-      _generateDataColumn(MessageKeys.discountColumnTitle.tr, false),
-      _generateDataColumn(MessageKeys.isAvailableColumnTitle.tr, false),
-      _generateDataColumn(MessageKeys.actionsColumnTitle.tr, false)
+      generateDataColumn(context,MessageKeys.noColumnTitle.tr, false),
+      generateDataColumn(context,MessageKeys.codeColumnTitle.tr, false),
+      generateDataColumn(context,MessageKeys.discountColumnTitle.tr, false),
+      generateDataColumn(context,MessageKeys.isAvailableColumnTitle.tr, false),
+      generateDataColumn(context,MessageKeys.actionsColumnTitle.tr, false)
     ];
   }
 
-  DataColumn _generateDataColumn(String text, bool isNumeric) {
-    return DataColumn(
-        label: Text(
-          text,
-          style: Theme.of(context)
-              .textTheme
-              .bodyMedium
-              ?.copyWith(fontWeight: FontWeight.bold),
-        ),
-        numeric: isNumeric);
-  }
 
   void _showError(AppErrorModel result) {
     CustomSnackBar.showFailureSnackBar(

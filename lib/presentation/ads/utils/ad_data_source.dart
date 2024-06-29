@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_admin/data/ads/model/ad_model.dart';
 import 'package:ecommerce_admin/presentation/base/language/language.dart';
+import 'package:ecommerce_admin/presentation/base/model/constants.dart';
 import 'package:ecommerce_admin/presentation/base/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,7 +24,7 @@ class AdDataSource extends DataTableSource {
       DataCell(Text(item.id.toString())),
       DataCell(
         CachedNetworkImage(
-          imageUrl: "http://${item.photoUrl}",
+          imageUrl: "$scheme://${item.photoUrl}",
           width: 40,
           height: 40,
           placeholder: (context, url) => const CircularProgressIndicator(),

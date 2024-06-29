@@ -24,7 +24,12 @@ class PromoDataSource extends DataTableSource {
       DataCell(Text(item.id.toString())),
       DataCell(Text(item.code.toString())),
       DataCell(Text(item.discount.toString())),
-      DataCell(Text(item.isAvailable.toString().isAvailable())),
+      DataCell(Text(item.isAvailable.toString().isAvailable(),
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: item.isAvailable!
+                  ? AppColors.greenColor
+                  : AppColors.redColor))),
       DataCell(Builder(
         builder: (context) {
           return Row(

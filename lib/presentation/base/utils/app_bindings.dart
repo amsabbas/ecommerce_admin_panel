@@ -143,7 +143,9 @@ class AppBindings extends Bindings {
         () => ProductsInteractor(repository: Get.find<ProductsRepository>()));
     Get.lazyPut(
       () => ProductsController(
-          productsInteractor: Get.find<ProductsInteractor>()),
+          categoryInteractor: Get.find<CategoryInteractor>(),
+          productsInteractor: Get.find<ProductsInteractor>(),
+          fileInteractor: Get.find<FileInteractor>()),
     );
   }
 
