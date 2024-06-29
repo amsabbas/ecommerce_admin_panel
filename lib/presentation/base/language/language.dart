@@ -34,10 +34,12 @@ class MessageKeys {
   static const String productsTitle = "productsTitle";
   static const String promosTitle = "promosTitle";
   static const String categoriesTitle = "categoriesTitle";
+  static const String areasTitle = "areasTitle";
   static const String adsTitle = "adsTitle";
   static const String categoryDetailTitle = "categoryDetailTitle";
   static const String addAddTitle = "addAddTitle";
   static const String addCategoryTitle = "addCategoryTitle";
+  static const String addAreaTitle = "addAreaTitle";
   static const String addPromoTitle = "addPromoTitle";
   static const String addProductTitle = "addProductTitle";
   static const String productDetailTitle = "productDetail";
@@ -65,11 +67,12 @@ class MessageKeys {
   static const String categoryNameTitle = "categoryNameTitle";
   static const String promoCodeTitle = "promoCodeTitle";
   static const String promoDiscountTitle = "promoDiscountTitle";
-
   static const String productNameTitle = "productNameTitle";
   static const String productDescTitle = "productDescTitle";
   static const String productPriceTitle = "productPriceTitle";
   static const String productQuantityTitle = "productQuantityTitle";
+  static const String areaNameTitle = "areaNameTitle";
+
 
   static const String deleteTitle = "deleteTitle";
   static const String deleteMessage = "deleteMessage";
@@ -121,11 +124,13 @@ class Language extends Translations {
           MessageKeys.dashboardTitle: "Dashboard",
           MessageKeys.productsTitle: "Products",
           MessageKeys.promosTitle: "Promos",
+          MessageKeys.areasTitle: "Areas",
           MessageKeys.adsTitle: "Ads",
           MessageKeys.categoryDetailTitle: "Category Detail",
           MessageKeys.addCategoryTitle: "Add Category",
           MessageKeys.addPromoTitle: "Add Promo",
           MessageKeys.addAddTitle: "Add Ad",
+          MessageKeys.addAreaTitle: "Add Area",
           MessageKeys.addProductTitle: "Add Product",
           MessageKeys.productDetailTitle: "Product Detail",
 
@@ -144,9 +149,11 @@ class Language extends Translations {
           MessageKeys.descColumnTitle: "Description",
           MessageKeys.isAvailableColumnTitle: "Is Available",
           MessageKeys.codeColumnTitle: "Code",
+          MessageKeys.areaNameTitle: "Area Name",
           MessageKeys.discountColumnTitle: "Discount",
           MessageKeys.photoColumnTitle: "Photo",
           MessageKeys.chooseFileTitle: "Choose File",
+
 
           MessageKeys.categoryNameTitle: "Category Name",
           MessageKeys.promoCodeTitle: "Promo Code",
@@ -203,10 +210,12 @@ class Language extends Translations {
           MessageKeys.promosTitle: "العروض",
           MessageKeys.adsTitle: "الإعلانات",
           MessageKeys.categoriesTitle: "الأقسام",
+          MessageKeys.areasTitle: "المناطق",
           MessageKeys.productDetailTitle: "تفاصيل المنتج",
           MessageKeys.categoryDetailTitle: "تفاصيل القسم",
           MessageKeys.addCategoryTitle: "إضافة قسم",
           MessageKeys.addPromoTitle: "إضافة عرض",
+          MessageKeys.addAreaTitle: "إضافة منطقة",
           MessageKeys.addAddTitle: "إضافة إعلان",
           MessageKeys.addProductTitle: "إضافة منتج",
           MessageKeys.dashboardTotalOrders: "إجمالي الطلبات",
@@ -222,6 +231,7 @@ class Language extends Translations {
           MessageKeys.quantityColumnTitle: "الكمية",
           MessageKeys.isAvailableColumnTitle: "متوفر",
           MessageKeys.codeColumnTitle: "الكود",
+          MessageKeys.areaNameTitle: "اسم المنطقة",
           MessageKeys.discountColumnTitle: "الخصم",
           MessageKeys.photoColumnTitle: "الصورة",
           MessageKeys.chooseFileTitle: "اختر ملف",

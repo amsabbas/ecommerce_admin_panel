@@ -4,6 +4,9 @@ import 'package:ecommerce_admin/data/ads/repository/ads_repository_impl.dart';
 import 'package:ecommerce_admin/data/appsettings/datasource/local/settings_local_data_source.dart';
 import 'package:ecommerce_admin/data/appsettings/interactor/settings_interactor.dart';
 import 'package:ecommerce_admin/data/appsettings/repository/settings_repository.dart';
+import 'package:ecommerce_admin/data/areas/datasource/areas_remote_data_source.dart';
+import 'package:ecommerce_admin/data/areas/interactor/area_interactor.dart';
+import 'package:ecommerce_admin/data/areas/repository/areas_repository_impl.dart';
 import 'package:ecommerce_admin/data/base/network/service_generator.dart';
 import 'package:ecommerce_admin/data/base/utils/auth_manager.dart';
 import 'package:ecommerce_admin/data/categories/datasource/categories_remote_data_source.dart';
@@ -28,6 +31,7 @@ import 'package:ecommerce_admin/data/user/datasource/user_remote_data_source.dar
 import 'package:ecommerce_admin/data/user/interactor/user_interactor.dart';
 import 'package:ecommerce_admin/data/user/repository/user_repository_impl.dart';
 import 'package:ecommerce_admin/presentation/ads/controller/ads_controller.dart';
+import 'package:ecommerce_admin/presentation/areas/controller/areas_controller.dart';
 import 'package:ecommerce_admin/presentation/base/controller/menu_controller.dart';
 import 'package:ecommerce_admin/presentation/base/controller/user_controller.dart';
 import 'package:ecommerce_admin/presentation/categories/controller/categories_controller.dart';
@@ -45,6 +49,7 @@ class AppBindings extends Bindings {
   Future<void> dependencies() async {
     await _addGeneralDependencies();
     await _addAdsDependencies();
+    await _addAreasDependencies();
     await _addPromosDependencies();
     await _addFileDependencies();
     await _addCategoriesDependencies();
@@ -119,6 +124,17 @@ class AppBindings extends Bindings {
     Get.lazyPut(() =>
         FileRepository(remoteDataSource: Get.find<FileRemoteDataSource>()));
     Get.lazyPut(() => FileInteractor(repository: Get.find<FileRepository>()));
+  }
+
+  Future<void> _addAreasDependencies() async {
+    Get.lazyPut(() => AreasRemoteDataSource(
+        service: Get.find<ServiceGenerator>(),
+        authManager: Get.find<AuthManager>()));
+    Get.lazyPut(() =>
+        AreasRepository(remoteDataSource: Get.find<AreasRemoteDataSource>()));
+    Get.lazyPut(() => AreaInteractor(repository: Get.find<AreasRepository>()));
+    Get.lazyPut(
+        () => AreasController(areaInteractor: Get.find<AreaInteractor>()));
   }
 
   Future<void> _addCategoriesDependencies() async {
