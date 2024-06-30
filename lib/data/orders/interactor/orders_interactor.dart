@@ -12,4 +12,7 @@ class OrdersInteractor {
 
   Future<OrderResponseModel> getAllOrdersEndPoint(int page, int take) async =>
       await repository.getAllOrdersEndPoint(page, take);
+
+  Future changeOrderStatusEndPoint(int orderID, String status) async =>
+      await repository.changeOrderStatusEndPoint(orderID, status);
 }

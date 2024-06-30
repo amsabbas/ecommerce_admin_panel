@@ -9,6 +9,7 @@ import '../../base/utils/result.dart';
 
 class OrdersController extends GetxController {
   final ordersState = ResultState<List<OrderModel>>();
+  final changeStatusState = ResultState();
   final metaState = ResultState<MetaPaginatedModel>();
 
   final int take = 5;
@@ -49,9 +50,21 @@ class OrdersController extends GetxController {
     _operations.clear();
   }
 
+  void changeOrderStatus(int orderID, String status) async {
+    try {
+      changeStatusState.setLoading();
+      changeStatusState.setSuccess(
+          await ordersInteractor.changeOrderStatusEndPoint(orderID, status));
+    } catch (error, errorStack) {
+      AppLogger.error(error: error, errorStack: errorStack);
+      changeStatusState.setError(error);
+    }
+  }
+
   @override
   void dispose() {
     super.dispose();
     ordersState.close();
+    changeStatusState.close();
   }
 }

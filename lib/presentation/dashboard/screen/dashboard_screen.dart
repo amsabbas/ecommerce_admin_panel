@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:ecommerce_admin/data/dashboard/model/dashboard_data_model.dart';
 import 'package:ecommerce_admin/data/orders/model/order_model.dart';
 import 'package:ecommerce_admin/presentation/base/extension/date_string_extension.dart';
+import 'package:ecommerce_admin/presentation/base/extension/string_extension.dart';
 import 'package:ecommerce_admin/presentation/base/language/language.dart';
 import 'package:ecommerce_admin/presentation/base/model/constants.dart';
 import 'package:ecommerce_admin/presentation/base/style/colors.dart';
@@ -165,9 +166,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   List<DataColumn> _dataColumn() {
     return [
-      generateDataColumn(context,MessageKeys.noColumnTitle.tr, true),
+      generateDataColumn(context,MessageKeys.noColumnTitle.tr, false),
       generateDataColumn(context,MessageKeys.dateColumnTitle.tr, false),
-      generateDataColumn(context,MessageKeys.priceColumnTitle.tr, true)
+      generateDataColumn(context, MessageKeys.statusColumnTitle.tr, false),
+      generateDataColumn(context,MessageKeys.priceColumnTitle.tr, false)
     ];
   }
 
@@ -180,6 +182,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
         cells: [
           DataCell(Text('#${orders[index].id}')),
           DataCell(Text(orders[index].date.getFormattedDate())),
+          DataCell(Text(orders[index].status.getStatus(),
+              style: TextStyle(
+                  color: orders[index].status == acceptedStatus
+                      ? AppColors.greenColor
+                      : AppColors.redColor))),
           DataCell(Text('${orders[index].total}')),
         ],
       );

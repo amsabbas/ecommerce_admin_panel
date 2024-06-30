@@ -92,7 +92,7 @@ class MessageKeys {
   static const String backButtonTitle = "backButtonTitle";
 
   static const String pending = "pending";
-  static const String completed = "completed";
+  static const String accepted = "accepted";
   static const String cancelled = "cancelled";
 }
 
@@ -188,7 +188,7 @@ class Language extends Translations {
           MessageKeys.backButtonTitle: "Back",
 
           MessageKeys.pending: "Pending",
-          MessageKeys.completed: "Completed",
+          MessageKeys.accepted: "Accepted",
           MessageKeys.cancelled: "Cancelled",
         },
         'ar': {
@@ -277,7 +277,7 @@ class Language extends Translations {
           MessageKeys.backButtonTitle: "رجوع",
 
           MessageKeys.pending: "قيد الانتظار",
-          MessageKeys.completed: "مكتمل",
+          MessageKeys.accepted: "مقبول",
           MessageKeys.cancelled: "ملغى",
         }
 

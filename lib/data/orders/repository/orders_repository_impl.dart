@@ -14,4 +14,8 @@ class OrdersRepository {
   Future<OrderResponseModel> getAllOrdersEndPoint(int page, int take) async {
     return await remoteDataSource.getAllOrdersEndPoint(page, take);
   }
+
+  Future changeOrderStatusEndPoint(int orderID, String status) async {
+    return await remoteDataSource.changeOrderStatusEndPoint(orderID, status);
+  }
 }

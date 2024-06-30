@@ -1,3 +1,4 @@
+import 'package:ecommerce_admin/presentation/base/model/constants.dart';
 import 'package:get/get.dart';
 
 import '../language/language.dart';
@@ -11,10 +12,10 @@ extension StringExtension on String? {
     }
   }
   String getStatus() {
-    if (this == "pending") {
+    if (this == pendingStatus) {
       return MessageKeys.pending.tr;
-    } else if (this == "completed") {
-      return MessageKeys.completed.tr;
+    } else if (this == acceptedStatus) {
+      return MessageKeys.accepted.tr;
     } else {
       return MessageKeys.cancelled.tr;
     }

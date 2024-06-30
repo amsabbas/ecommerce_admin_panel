@@ -26,4 +26,11 @@ class OrdersRemoteDataSource {
             userToken: userToken, data: map))
         .then((response) => OrderResponseModel.fromJson(response));
   }
+
+  Future changeOrderStatusEndPoint(int orderID, String status) async {
+    Map<String, dynamic> map = {'order_id': orderID, 'status': status};
+    final userToken = authManager.getToken();
+    return service.call(OrdersEndPoints.changeOrderStatusEndPoint(
+        userToken: userToken, data: map));
+  }
 }
