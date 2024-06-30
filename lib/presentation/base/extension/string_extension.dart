@@ -10,4 +10,13 @@ extension StringExtension on String? {
       return MessageKeys.no.tr;
     }
   }
+  String getStatus() {
+    if (this == "pending") {
+      return MessageKeys.pending.tr;
+    } else if (this == "completed") {
+      return MessageKeys.completed.tr;
+    } else {
+      return MessageKeys.cancelled.tr;
+    }
+  }
 }

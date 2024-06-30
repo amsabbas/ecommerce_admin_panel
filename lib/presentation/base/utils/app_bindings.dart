@@ -37,6 +37,7 @@ import 'package:ecommerce_admin/presentation/base/controller/user_controller.dar
 import 'package:ecommerce_admin/presentation/categories/controller/categories_controller.dart';
 import 'package:ecommerce_admin/presentation/dashboard/controller/dashboard_controller.dart';
 import 'package:ecommerce_admin/presentation/login/controller/login_controller.dart';
+import 'package:ecommerce_admin/presentation/orders/controller/orders_controller.dart';
 import 'package:ecommerce_admin/presentation/products/controller/products_controller.dart';
 import 'package:ecommerce_admin/presentation/promos/controller/promos_controller.dart';
 import 'package:get/get.dart';
@@ -173,6 +174,8 @@ class AppBindings extends Bindings {
         OrdersRepository(remoteDataSource: Get.find<OrdersRemoteDataSource>()));
     Get.lazyPut(
         () => OrdersInteractor(repository: Get.find<OrdersRepository>()));
+    Get.lazyPut(
+        () => OrdersController(ordersInteractor: Get.find<OrdersInteractor>()));
   }
 
   Future<void> _addDashboardDependencies() async {

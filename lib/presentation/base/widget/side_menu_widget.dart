@@ -56,14 +56,6 @@ class SideMenu extends StatelessWidget {
           ),
           const Divider(thickness: 0.2,),
           DrawerListTile(
-            title: MessageKeys.categoriesTitle.tr,
-            svgSrc: AssetResource.categoriesImagePath,
-            press: () {
-              menuController.selectedMenu.value = MessageKeys.categoriesTitle;
-            },
-          ),
-          const Divider(thickness: 0.2,),
-          DrawerListTile(
             title: MessageKeys.promosTitle.tr,
             svgSrc: AssetResource.promosImagePath,
             press: () {
@@ -72,10 +64,26 @@ class SideMenu extends StatelessWidget {
           ),
           const Divider(thickness: 0.2,),
           DrawerListTile(
+            title: MessageKeys.categoriesTitle.tr,
+            svgSrc: AssetResource.categoriesImagePath,
+            press: () {
+              menuController.selectedMenu.value = MessageKeys.categoriesTitle;
+            },
+          ),
+          const Divider(thickness: 0.2,),
+          DrawerListTile(
             title: MessageKeys.productsTitle.tr,
             svgSrc: AssetResource.productsImagePath,
             press: () {
               menuController.selectedMenu.value = MessageKeys.productsTitle;
+            },
+          ),
+          const Divider(thickness: 0.2,),
+          DrawerListTile(
+            title: MessageKeys.ordersTitle.tr,
+            svgSrc: AssetResource.ordersImagePath,
+            press: () {
+              menuController.selectedMenu.value = MessageKeys.ordersTitle;
             },
           ),
           const Divider(thickness: 0.2,),

@@ -35,6 +35,7 @@ class MessageKeys {
   static const String promosTitle = "promosTitle";
   static const String categoriesTitle = "categoriesTitle";
   static const String areasTitle = "areasTitle";
+  static const String ordersTitle = "ordersTitle";
   static const String adsTitle = "adsTitle";
   static const String categoryDetailTitle = "categoryDetailTitle";
   static const String addAddTitle = "addAddTitle";
@@ -54,6 +55,7 @@ class MessageKeys {
   static const String noColumnTitle = "noColumnTitle";
   static const String nameColumnTitle = "nameColumnTitle";
   static const String dateColumnTitle = "dateColumnTitle";
+  static const String statusColumnTitle = "statusColumnTitle";
   static const String priceColumnTitle = "priceColumnTitle";
   static const String codeColumnTitle = "codeColumnTitle";
   static const String discountColumnTitle = "discountColumnTitle";
@@ -86,7 +88,12 @@ class MessageKeys {
   static const String addButtonTitle  = "addButtonTitle";
   static const String editButtonTitle = "editButtonTitle";
   static const String deleteButtonTitle = "deleteButtonTitle";
+  static const String detailButtonTitle = "detailButtonTitle";
   static const String backButtonTitle = "backButtonTitle";
+
+  static const String pending = "pending";
+  static const String completed = "completed";
+  static const String cancelled = "cancelled";
 }
 
 class Language extends Translations {
@@ -125,6 +132,7 @@ class Language extends Translations {
           MessageKeys.productsTitle: "Products",
           MessageKeys.promosTitle: "Promos",
           MessageKeys.areasTitle: "Areas",
+          MessageKeys.ordersTitle: "Orders",
           MessageKeys.adsTitle: "Ads",
           MessageKeys.categoryDetailTitle: "Category Detail",
           MessageKeys.addCategoryTitle: "Add Category",
@@ -142,6 +150,7 @@ class Language extends Translations {
           MessageKeys.categoriesTitle: "Categories",
           MessageKeys.noColumnTitle: "No.",
           MessageKeys.dateColumnTitle: "Date",
+          MessageKeys.statusColumnTitle: "Status",
           MessageKeys.priceColumnTitle: "Price",
           MessageKeys.nameColumnTitle: "Name",
           MessageKeys.actionsColumnTitle: "Actions",
@@ -175,7 +184,12 @@ class Language extends Translations {
           MessageKeys.editButtonTitle: "Edit",
           MessageKeys.deleteButtonTitle: "Delete",
           MessageKeys.addButtonTitle: "Add",
+          MessageKeys.detailButtonTitle: "Detail",
           MessageKeys.backButtonTitle: "Back",
+
+          MessageKeys.pending: "Pending",
+          MessageKeys.completed: "Completed",
+          MessageKeys.cancelled: "Cancelled",
         },
         'ar': {
           MessageKeys.appName: 'Amin Pet Shop',
@@ -207,6 +221,7 @@ class Language extends Translations {
           MessageKeys.username: "اسم المستخدم",
           MessageKeys.dashboardTitle: "لوحة التحكم",
           MessageKeys.productsTitle: "المنتجات",
+          MessageKeys.ordersTitle: "الطلبات",
           MessageKeys.promosTitle: "العروض",
           MessageKeys.adsTitle: "الإعلانات",
           MessageKeys.categoriesTitle: "الأقسام",
@@ -224,6 +239,7 @@ class Language extends Translations {
           MessageKeys.recentOrders: "الطلبات الأخيرة",
           MessageKeys.noColumnTitle: "رقم",
           MessageKeys.dateColumnTitle: "تاريخ",
+          MessageKeys.statusColumnTitle: "الحالة",
           MessageKeys.priceColumnTitle: "السعر",
           MessageKeys.nameColumnTitle: "الاسم",
           MessageKeys.descColumnTitle: "الوصف",
@@ -257,7 +273,13 @@ class Language extends Translations {
           MessageKeys.editButtonTitle: "تعديل",
           MessageKeys.deleteButtonTitle: "حذف",
           MessageKeys.addButtonTitle: "إضافة",
+          MessageKeys.detailButtonTitle: "تفاصيل",
           MessageKeys.backButtonTitle: "رجوع",
+
+          MessageKeys.pending: "قيد الانتظار",
+          MessageKeys.completed: "مكتمل",
+          MessageKeys.cancelled: "ملغى",
         }
+
       };
 }

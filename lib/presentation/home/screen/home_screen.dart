@@ -7,6 +7,7 @@ import 'package:ecommerce_admin/presentation/base/widget/responsive_widget.dart'
 import 'package:ecommerce_admin/presentation/base/widget/side_menu_widget.dart';
 import 'package:ecommerce_admin/presentation/categories/screen/categories_screen.dart';
 import 'package:ecommerce_admin/presentation/dashboard/screen/dashboard_screen.dart';
+import 'package:ecommerce_admin/presentation/orders/screen/orders_screen.dart';
 import 'package:ecommerce_admin/presentation/products/screen/products_screen.dart';
 import 'package:ecommerce_admin/presentation/promos/screen/promos_screen.dart';
 import 'package:flutter/material.dart';
@@ -73,6 +74,8 @@ class _HomeScreenState extends State<HomeScreen> {
         return const AreasScreen();
       case MessageKeys.promosTitle:
         return const PromosScreen();
+      case MessageKeys.ordersTitle:
+        return const OrdersScreen();
       default:
         return const DashboardScreen();
     }
