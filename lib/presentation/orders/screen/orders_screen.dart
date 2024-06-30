@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:ecommerce_admin/data/base/model/meta_paginated_model.dart';
-import 'package:ecommerce_admin/data/base/utils/app_logger.dart';
 import 'package:ecommerce_admin/data/orders/model/order_model.dart';
 import 'package:ecommerce_admin/presentation/base/language/language.dart';
 import 'package:ecommerce_admin/presentation/base/model/constants.dart';
@@ -11,6 +10,7 @@ import 'package:ecommerce_admin/presentation/base/widget/error_widget.dart';
 import 'package:ecommerce_admin/presentation/base/widget/loading_widget.dart';
 import 'package:ecommerce_admin/presentation/base/widget/menu_header_widget.dart';
 import 'package:ecommerce_admin/presentation/orders/controller/orders_controller.dart';
+import 'package:ecommerce_admin/presentation/orders/screen/order_detail_screen.dart';
 import 'package:ecommerce_admin/presentation/orders/utils/order_data_source.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -37,7 +37,12 @@ class _OrdersScreenState extends State<OrdersScreen> {
     });
     _dataSource = OrderDataSource(
       itemPerRow: _ordersController.take,
-      onDetailButtonPressed: (data) => {},
+      onDetailButtonPressed: (data) => {
+        Get.to(
+          const OrderDetailScreen(),
+          arguments: data,
+        )
+      },
     );
   }
 
@@ -87,9 +92,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                   showCheckboxColumn: false,
                                   showFirstLastButtons: false,
                                   onPageChanged: (page) {
-                                    AppLogger.error(
-                                        error: "Page $page");
-                                    _ordersController.getOrders(((page)~/ ( _ordersController.take )) + 1);
+                                    _ordersController.getOrders(
+                                        ((page) ~/ (_ordersController.take)) +
+                                            1);
                                   },
                                   columns: _dataColumn()),
                             ),

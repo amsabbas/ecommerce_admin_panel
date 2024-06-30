@@ -17,7 +17,7 @@ extension StringExtension on String? {
     } else if (this == acceptedStatus) {
       return MessageKeys.accepted.tr;
     } else {
-      return MessageKeys.cancelled.tr;
+      return MessageKeys.rejected.tr;
     }
   }
 }

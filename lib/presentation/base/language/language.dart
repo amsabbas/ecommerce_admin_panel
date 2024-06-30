@@ -36,6 +36,7 @@ class MessageKeys {
   static const String categoriesTitle = "categoriesTitle";
   static const String areasTitle = "areasTitle";
   static const String ordersTitle = "ordersTitle";
+  static const String orderDetailTitle = "orderDetailTitle";
   static const String adsTitle = "adsTitle";
   static const String categoryDetailTitle = "categoryDetailTitle";
   static const String addAddTitle = "addAddTitle";
@@ -89,11 +90,13 @@ class MessageKeys {
   static const String editButtonTitle = "editButtonTitle";
   static const String deleteButtonTitle = "deleteButtonTitle";
   static const String detailButtonTitle = "detailButtonTitle";
+  static const String acceptButtonTitle = "acceptButtonTitle";
+  static const String rejectButtonTitle = "rejectButtonTitle";
   static const String backButtonTitle = "backButtonTitle";
 
   static const String pending = "pending";
   static const String accepted = "accepted";
-  static const String cancelled = "cancelled";
+  static const String rejected = "rejected";
 }
 
 class Language extends Translations {
@@ -133,6 +136,7 @@ class Language extends Translations {
           MessageKeys.promosTitle: "Promos",
           MessageKeys.areasTitle: "Areas",
           MessageKeys.ordersTitle: "Orders",
+          MessageKeys.orderDetailTitle: "Order Detail",
           MessageKeys.adsTitle: "Ads",
           MessageKeys.categoryDetailTitle: "Category Detail",
           MessageKeys.addCategoryTitle: "Add Category",
@@ -185,11 +189,12 @@ class Language extends Translations {
           MessageKeys.deleteButtonTitle: "Delete",
           MessageKeys.addButtonTitle: "Add",
           MessageKeys.detailButtonTitle: "Detail",
+          MessageKeys.acceptButtonTitle: "Accept",
+          MessageKeys.rejectButtonTitle: "Reject",
           MessageKeys.backButtonTitle: "Back",
-
           MessageKeys.pending: "Pending",
           MessageKeys.accepted: "Accepted",
-          MessageKeys.cancelled: "Cancelled",
+          MessageKeys.rejected: "Rejected",
         },
         'ar': {
           MessageKeys.appName: 'Amin Pet Shop',
@@ -222,6 +227,7 @@ class Language extends Translations {
           MessageKeys.dashboardTitle: "لوحة التحكم",
           MessageKeys.productsTitle: "المنتجات",
           MessageKeys.ordersTitle: "الطلبات",
+          MessageKeys.orderDetailTitle: "تفاصيل الطلب",
           MessageKeys.promosTitle: "العروض",
           MessageKeys.adsTitle: "الإعلانات",
           MessageKeys.categoriesTitle: "الأقسام",
@@ -274,11 +280,13 @@ class Language extends Translations {
           MessageKeys.deleteButtonTitle: "حذف",
           MessageKeys.addButtonTitle: "إضافة",
           MessageKeys.detailButtonTitle: "تفاصيل",
+          MessageKeys.acceptButtonTitle: "قبول",
+          MessageKeys.rejectButtonTitle: "رفض",
           MessageKeys.backButtonTitle: "رجوع",
 
           MessageKeys.pending: "قيد الانتظار",
           MessageKeys.accepted: "مقبول",
-          MessageKeys.cancelled: "ملغى",
+          MessageKeys.rejected: "مرفوض",
         }
 
       };
