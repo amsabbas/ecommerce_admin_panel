@@ -166,14 +166,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   List<DataColumn> _dataColumn() {
     return [
-      generateDataColumn(context,MessageKeys.noColumnTitle.tr, false),
-      generateDataColumn(context,MessageKeys.dateColumnTitle.tr, false),
+      generateDataColumn(context, MessageKeys.noColumnTitle.tr, false),
+      generateDataColumn(context, MessageKeys.dateColumnTitle.tr, false),
       generateDataColumn(context, MessageKeys.statusColumnTitle.tr, false),
-      generateDataColumn(context,MessageKeys.priceColumnTitle.tr, false)
+      generateDataColumn(context, MessageKeys.priceColumnTitle.tr, false)
     ];
   }
-
-
 
   List<DataRow> _dataRow(List<OrderModel> orders) {
     return List.generate(orders.length, (index) {
@@ -183,10 +181,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           DataCell(Text('#${orders[index].id}')),
           DataCell(Text(orders[index].date.getFormattedDate())),
           DataCell(Text(orders[index].status.getStatus(),
-              style: TextStyle(
-                  color: orders[index].status == acceptedStatus
-                      ? AppColors.greenColor
-                      : AppColors.redColor))),
+              style: TextStyle(color: orders[index].status.getStatusColor()))),
           DataCell(Text('${orders[index].total}')),
         ],
       );

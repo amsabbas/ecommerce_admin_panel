@@ -20,6 +20,13 @@ OrderModel _$OrderModelFromJson(Map<String, dynamic> json) => OrderModel(
       info: (json['info'] as List<dynamic>?)
           ?.map((e) => OrderInfoModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      userModel: json['user'] == null
+          ? null
+          : UserModel.fromJson(json['user'] as Map<String, dynamic>),
+      address: json['user_address'] == null
+          ? null
+          : UserAddressModel.fromJson(
+              json['user_address'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$OrderModelToJson(OrderModel instance) =>
@@ -33,4 +40,6 @@ Map<String, dynamic> _$OrderModelToJson(OrderModel instance) =>
       'deliveryFees': instance.deliveryFees,
       'products': instance.products,
       'info': instance.info,
+      'user': instance.userModel,
+      'user_address': instance.address,
     };

@@ -8,8 +8,8 @@ part of 'meta_paginated_model.dart';
 
 MetaPaginatedModel _$MetaPaginatedModelFromJson(Map<String, dynamic> json) =>
     MetaPaginatedModel(
-      page: json['page'] as int,
-      take: json['take'] as int,
+      page: (json['page'] as num).toInt(),
+      take: (json['take'] as num).toInt(),
       itemCount: (json['itemCount'] as num).toInt(),
       pageCount: (json['pageCount'] as num).toInt(),
       hasPreviousPage: json['hasPreviousPage'] as bool,

@@ -7,9 +7,9 @@ class UserModel {
   @JsonKey(name: "id")
   int? id;
   @JsonKey(name: "email")
-  final String email;
+  final String? email;
   @JsonKey(name: "name")
-  final String name;
+  final String? name;
   @JsonKey(name: "phone")
   final String? phone;
 

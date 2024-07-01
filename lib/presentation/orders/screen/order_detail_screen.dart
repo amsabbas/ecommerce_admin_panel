@@ -1,6 +1,5 @@
 import 'package:ecommerce_admin/data/base/model/app_error_model.dart';
 import 'package:ecommerce_admin/data/orders/model/order_model.dart';
-import 'package:ecommerce_admin/presentation/base/extension/string_extension.dart';
 import 'package:ecommerce_admin/presentation/base/language/language.dart';
 import 'package:ecommerce_admin/presentation/base/model/constants.dart';
 import 'package:ecommerce_admin/presentation/base/style/colors.dart';
@@ -9,13 +8,18 @@ import 'package:ecommerce_admin/presentation/base/utils/custom_snack_bar.dart';
 import 'package:ecommerce_admin/presentation/base/utils/result.dart';
 import 'package:ecommerce_admin/presentation/base/widget/action_button_widget.dart';
 import 'package:ecommerce_admin/presentation/orders/controller/orders_controller.dart';
+import 'package:ecommerce_admin/presentation/orders/utils/order_info_widget.dart';
+import 'package:ecommerce_admin/presentation/orders/utils/order_product_info_widget.dart';
+import 'package:ecommerce_admin/presentation/orders/utils/order_user_info_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 class OrderDetailScreen extends StatefulWidget {
+  final int page;
+
   const OrderDetailScreen({
     super.key,
+    required this.page,
   });
 
   @override
@@ -23,7 +27,6 @@ class OrderDetailScreen extends StatefulWidget {
 }
 
 class _OrderDetailScreenState extends State<OrderDetailScreen> {
-  final _formKey = GlobalKey<FormBuilderState>();
   late final OrdersController _ordersController;
   late final Worker _changeStatusWorker;
   late final OrderModel? _orderModel;
@@ -51,7 +54,7 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
         child: Align(
           alignment: Alignment.topCenter,
           child: Container(
-            constraints: const BoxConstraints(maxWidth: 650.0),
+            constraints: const BoxConstraints(maxWidth: 800.0),
             child: Padding(
               padding: const EdgeInsets.all(32.0),
               child: Card(
@@ -110,164 +113,33 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          _orderInfoWidget(),
-          _productInfoWidget(),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              OrderUserInfoWidget(
+                userModel: _orderModel!.userModel!,
+                userAddressModel: _orderModel.address!,
+              ),
+              const SizedBox(
+                width: 16,
+              ),
+              OrderInfoWidget(
+                orderModel: _orderModel,
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          OrderProductInfoWidget(
+            productModel: _orderModel.products!,
+            productInfoModel: _orderModel.info!,
+          ),
           _actionsButtonWidget(),
         ],
       ),
     );
-  }
-
-  Widget _orderInfoWidget() {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Text(
-              MessageKeys.noColumnTitle.tr,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(),
-            ),
-            const SizedBox(
-              width: 8,
-            ),
-            Text(
-              _orderModel!.id.toString(),
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Text(
-              MessageKeys.statusColumnTitle.tr,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(),
-            ),
-            const SizedBox(
-              width: 8,
-            ),
-            Text(
-              _orderModel.status.getStatus(),
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Text(
-              MessageKeys.priceColumnTitle.tr,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(),
-            ),
-            const SizedBox(
-              width: 8,
-            ),
-            Text(
-              _orderModel.subtotal.toString(),
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Text(
-              MessageKeys.priceColumnTitle.tr,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(),
-            ),
-            const SizedBox(
-              width: 8,
-            ),
-            Text(
-              _orderModel.discount.toString(),
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Text(
-              MessageKeys.priceColumnTitle.tr,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(),
-            ),
-            const SizedBox(
-              width: 8,
-            ),
-            Text(
-              _orderModel.deliveryFees.toString(),
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Text(
-              MessageKeys.priceColumnTitle.tr,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(),
-            ),
-            const SizedBox(
-              width: 8,
-            ),
-            Text(
-              _orderModel.total.toString(),
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget _productInfoWidget() {
-    return Column(
-        children: List.generate(_orderModel!.products!.length, (index) {
-      return Column(
-        children: [
-          Row(
-            children: [
-              Text(
-                MessageKeys.productNameTitle.tr,
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(),
-              ),
-              const SizedBox(
-                width: 8,
-              ),
-              Text(
-                _orderModel.products![index].name.toString(),
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Text(
-                MessageKeys.quantityColumnTitle.tr,
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(),
-              ),
-              const SizedBox(
-                width: 8,
-              ),
-              Text(
-                _orderModel.info![index].quantity.toString(),
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Text(
-                MessageKeys.priceColumnTitle.tr,
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(),
-              ),
-              const SizedBox(
-                width: 8,
-              ),
-              Text(
-                _orderModel.products![index].price.toString(),
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-            ],
-          ),
-        ],
-      );
-    }));
   }
 
   Widget _actionsButtonWidget() {
@@ -317,7 +189,7 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
   }
 
   void _showSuccess() {
-    _ordersController.getOrders(1);
+    _ordersController.getOrders(widget.page);
     Get.back();
   }
 

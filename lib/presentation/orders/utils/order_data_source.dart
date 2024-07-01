@@ -3,7 +3,6 @@ import 'package:ecommerce_admin/data/orders/model/order_model.dart';
 import 'package:ecommerce_admin/presentation/base/extension/date_string_extension.dart';
 import 'package:ecommerce_admin/presentation/base/extension/string_extension.dart';
 import 'package:ecommerce_admin/presentation/base/language/language.dart';
-import 'package:ecommerce_admin/presentation/base/model/constants.dart';
 import 'package:ecommerce_admin/presentation/base/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -38,10 +37,7 @@ class OrderDataSource extends DataTableSource {
       DataCell(Text(item.id.toString())),
       DataCell(Text(item.date.toString().getFormattedDate())),
       DataCell(Text(item.status.toString().getStatus(),
-          style: TextStyle(
-              color: item.status == acceptedStatus
-                  ? AppColors.greenColor
-                  : AppColors.redColor))),
+          style: TextStyle(color: item.status.getStatusColor()))),
       DataCell(Text(item.total.toString())),
       DataCell(Builder(
         builder: (context) {

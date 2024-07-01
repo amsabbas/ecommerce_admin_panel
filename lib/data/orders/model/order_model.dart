@@ -1,5 +1,7 @@
 import 'package:ecommerce_admin/data/orders/model/order_info_model.dart';
 import 'package:ecommerce_admin/data/products/model/product_model.dart';
+import 'package:ecommerce_admin/data/user/model/user_address_model.dart';
+import 'package:ecommerce_admin/data/user/model/user_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'order_model.g.dart';
@@ -32,6 +34,12 @@ class OrderModel {
   @JsonKey(name: "info")
   final List<OrderInfoModel>? info;
 
+  @JsonKey(name: "user")
+  final UserModel? userModel;
+
+  @JsonKey(name: "user_address")
+  final UserAddressModel? address;
+
   OrderModel({
     required this.id,
     required this.status,
@@ -42,6 +50,8 @@ class OrderModel {
     required this.deliveryFees,
     required this.products,
     required this.info,
+    required this.userModel,
+    required this.address,
   });
 
   factory OrderModel.fromJson(Map<String, dynamic> json) =>

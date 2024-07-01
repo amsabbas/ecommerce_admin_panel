@@ -26,6 +26,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
   final _scrollController = ScrollController();
   late OrdersController _ordersController;
   late OrderDataSource _dataSource;
+  int page = 1;
 
   @override
   void initState() {
@@ -39,7 +40,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
       itemPerRow: _ordersController.take,
       onDetailButtonPressed: (data) => {
         Get.to(
-          const OrderDetailScreen(),
+          OrderDetailScreen(page: page),
           arguments: data,
         )
       },
@@ -92,9 +93,10 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                   showCheckboxColumn: false,
                                   showFirstLastButtons: false,
                                   onPageChanged: (page) {
-                                    _ordersController.getOrders(
+                                    page =
                                         ((page) ~/ (_ordersController.take)) +
-                                            1);
+                                            1;
+                                    _ordersController.getOrders(page);
                                   },
                                   columns: _dataColumn()),
                             ),

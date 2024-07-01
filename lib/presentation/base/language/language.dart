@@ -97,6 +97,30 @@ class MessageKeys {
   static const String pending = "pending";
   static const String accepted = "accepted";
   static const String rejected = "rejected";
+
+  static const String userInfo = "userInfo";
+  static const String userName = "userName";
+  static const String userEmail = "userEmail";
+  static const String userPhone = "userPhone";
+  static const String userAddressInfo = "userAddressInfo";
+  static const String userStreetName = "userStreetName";
+  static const String userBuildingNumber = "userBuildingNumber";
+  static const String userFloorNumber = "userFloorNumber";
+  static const String userApartmentNumber = "userApartmentNumber";
+  static const String orderInfo = "orderInfo";
+  static const String orderNo = "orderNo";
+  static const String orderDate = "orderDate";
+  static const String orderStatus = "orderStatus";
+  static const String orderDiscountPrice = "orderDiscountPrice";
+  static const String orderSubTotalPrice = "orderSubTotalPrice";
+  static const String orderTotalPrice = "orderTotalPrice";
+  static const String orderDeliveryPrice = "orderDeliveryPrice";
+  static const String orderPaymentMethod = "orderPaymentMethod";
+  static const String orderProductInfo = "orderProductInfo";
+  static const String orderProductName = "orderProductName";
+  static const String orderProductPrice = "orderProductPrice";
+  static const String orderProductQuantity = "orderProductQuantity";
+
 }
 
 class Language extends Translations {
@@ -195,6 +219,31 @@ class Language extends Translations {
           MessageKeys.pending: "Pending",
           MessageKeys.accepted: "Accepted",
           MessageKeys.rejected: "Rejected",
+
+          MessageKeys.userInfo: "User Info",
+          MessageKeys.userName: "Username",
+          MessageKeys.userEmail: "Email",
+          MessageKeys.userPhone: "Phone",
+          MessageKeys.userAddressInfo: "Address Info",
+          MessageKeys.userStreetName: "Street Name",
+          MessageKeys.userBuildingNumber: "Building Number",
+          MessageKeys.userFloorNumber: "Floor Number",
+          MessageKeys.userApartmentNumber: "Apartment Number",
+          MessageKeys.orderInfo: "Order Info",
+          MessageKeys.orderNo: "Order No",
+          MessageKeys.orderDate: "Order Date",
+          MessageKeys.orderStatus: "Order Status",
+          MessageKeys.orderDiscountPrice: "Discount Price",
+          MessageKeys.orderSubTotalPrice: "Subtotal Price",
+          MessageKeys.orderTotalPrice: "Total Price",
+          MessageKeys.orderDeliveryPrice: "Delivery fees",
+          MessageKeys.orderPaymentMethod: "Payment Method",
+          MessageKeys.orderProductInfo: "Product Info",
+          MessageKeys.orderProductName: "Product Name",
+          MessageKeys.orderProductPrice: "Product Price",
+          MessageKeys.orderProductQuantity: "Product Quantity",
+
+
         },
         'ar': {
           MessageKeys.appName: 'Amin Pet Shop',
@@ -287,6 +336,30 @@ class Language extends Translations {
           MessageKeys.pending: "قيد الانتظار",
           MessageKeys.accepted: "مقبول",
           MessageKeys.rejected: "مرفوض",
+
+          MessageKeys.userInfo: "معلومات المستخدم",
+          MessageKeys.userName: "اسم المستخدم",
+          MessageKeys.userEmail: "البريد الإلكتروني",
+          MessageKeys.userPhone: "رقم الهاتف",
+          MessageKeys.userAddressInfo: "معلومات العنوان",
+          MessageKeys.userStreetName: "اسم الشارع",
+          MessageKeys.userBuildingNumber: "رقم المبنى",
+          MessageKeys.userFloorNumber: "رقم الطابق",
+          MessageKeys.userApartmentNumber: "رقم الشقة",
+          MessageKeys.orderInfo: "معلومات الطلب",
+          MessageKeys.orderNo: "رقم الطلب",
+          MessageKeys.orderDate: "تاريخ الطلب",
+          MessageKeys.orderStatus: "حالة الطلب",
+          MessageKeys.orderDiscountPrice: "سعر الخصم",
+          MessageKeys.orderSubTotalPrice: "السعر الكلي",
+          MessageKeys.orderTotalPrice: "السعر الإجمالي",
+          MessageKeys.orderDeliveryPrice: "رسوم التوصيل",
+          MessageKeys.orderPaymentMethod: "طريقة الدفع",
+          MessageKeys.orderProductInfo: "معلومات المنتج",
+          MessageKeys.orderProductName: "اسم المنتج",
+          MessageKeys.orderProductPrice: "سعر المنتج",
+          MessageKeys.orderProductQuantity: "كمية المنتج",
+
         }
 
       };
