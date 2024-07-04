@@ -29,6 +29,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
   void initState() {
     super.initState();
     _categoriesController = Get.find();
+    _categoriesController.resetNameController();
     _addWorker = ever(
         _categoriesController.addCategoryState,
         (ResultData res) => {

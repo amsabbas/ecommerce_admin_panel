@@ -49,6 +49,10 @@ class CategoriesController extends GetxController {
     }
   }
 
+  void resetNameController() {
+    nameController.clear();
+  }
+
   @override
   void dispose() {
     super.dispose();
