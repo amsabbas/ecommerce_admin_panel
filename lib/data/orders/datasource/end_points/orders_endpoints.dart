@@ -37,6 +37,6 @@ class OrdersEndPoints {
         headers: headers,
         data: data,
         userToken: userToken,
-        method: HttpMethod.get);
+        method: HttpMethod.post);
   }
 }
