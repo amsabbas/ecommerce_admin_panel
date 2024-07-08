@@ -73,7 +73,7 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => AppSettingsController(
         settingsInteractor: Get.find<SettingsInteractor>()));
 
-    Get.lazyPut(() => ServiceGenerator("https://ecommercebackendams.netlify.app",
+    Get.lazyPut(() => ServiceGenerator("http://localhost:3000/",
         Get.find<AuthManager>(), Get.find<SettingsLocalDataSource>()));
 
     Get.lazyPut(() => UserRemoteDataSource(
