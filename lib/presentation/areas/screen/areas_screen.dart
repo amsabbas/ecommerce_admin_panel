@@ -57,19 +57,20 @@ class _AreasState extends State<AreasScreen> {
           var state = controller.areasState.value.state;
           if (state == CurrentState.success) {
             _dataSource = AreaDataSource(
-              data: controller.areasState.value.data,
-              onDetailButtonPressed: (data) => {
-                CustomDialogs.showConfirmationDialog(
-                    context: context,
-                    title: MessageKeys.deleteTitle.tr,
-                    message: MessageKeys.deleteMessage.tr,
-                    positiveButtonTitle: MessageKeys.ok.tr,
-                    negativeButtonTitle: MessageKeys.cancel.tr,
-                    positiveCallBack: () {
-                      _areasController.deleteArea(data.id);
-                    })
-              },
-            );
+                data: controller.areasState.value.data,
+                onDeleteButtonPressed: (data) => {
+                      CustomDialogs.showConfirmationDialog(
+                          context: context,
+                          title: MessageKeys.deleteTitle.tr,
+                          message: MessageKeys.deleteMessage.tr,
+                          positiveButtonTitle: MessageKeys.ok.tr,
+                          negativeButtonTitle: MessageKeys.cancel.tr,
+                          positiveCallBack: () {
+                            _areasController.deleteArea(data.id);
+                          })
+                    },
+                onDetailButtonPressed: (data) =>
+                    {Get.to(() => const AreaDetailScreen(), arguments: data)});
             return SingleChildScrollView(
               primary: false,
               padding: const EdgeInsets.all(16),

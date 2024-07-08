@@ -1,3 +1,4 @@
+import 'package:ecommerce_admin/data/areas/model/area_model.dart';
 import 'package:ecommerce_admin/data/base/model/app_error_model.dart';
 import 'package:ecommerce_admin/presentation/areas/controller/areas_controller.dart';
 import 'package:ecommerce_admin/presentation/base/language/language.dart';
@@ -24,11 +25,17 @@ class _AreaDetailScreenState extends State<AreaDetailScreen> {
   final _formKey = GlobalKey<FormBuilderState>();
   late final AreasController _areasController;
   late final Worker _addWorker;
+  late final AreaModel? _areaModel;
 
   @override
   void initState() {
     super.initState();
     _areasController = Get.find();
+    _areasController.resetNameController();
+    _areaModel = Get.arguments;
+    if (_areaModel != null) {
+      _areasController.nameController.text = _areaModel.name;
+    }
     _addWorker = ever(
         _areasController.addAreaState,
         (ResultData res) => {
@@ -135,12 +142,18 @@ class _AreaDetailScreenState extends State<AreaDetailScreen> {
                     children: [
                       ActionButtonWidget(
                           isVisible: true,
-                          title: MessageKeys.addButtonTitle.tr,
+                          title: _areaModel != null
+                              ? MessageKeys.editButtonTitle.tr
+                              : MessageKeys.addButtonTitle.tr,
                           icon: Icons.check_circle_outline_rounded,
                           onPressed: () {
                             if (_formKey.currentState?.validate() ?? false) {
                               _formKey.currentState?.save();
-                              _areasController.addArea();
+                              if (_areaModel != null) {
+                                _areasController.editArea(_areaModel.id);
+                              } else {
+                                _areasController.addArea();
+                              }
                             }
                           }),
                     ],

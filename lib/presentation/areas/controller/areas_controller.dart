@@ -36,6 +36,17 @@ class AreasController extends GetxController {
     }
   }
 
+  void editArea(int id) async {
+    try {
+      addAreaState.setLoading();
+      addAreaState
+          .setSuccess(await areaInteractor.editArea(id, nameController.text));
+    } catch (error, errorStack) {
+      AppLogger.error(error: error, errorStack: errorStack);
+      addAreaState.setError(error);
+    }
+  }
+
   void deleteArea(int id) async {
     try {
       deleteAreaState.setLoading();
@@ -45,6 +56,10 @@ class AreasController extends GetxController {
       AppLogger.error(error: error, errorStack: errorStack);
       deleteAreaState.setError(error);
     }
+  }
+
+  void resetNameController() {
+    nameController.clear();
   }
 
   @override

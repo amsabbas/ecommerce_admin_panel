@@ -17,4 +17,8 @@ class AreasRepository {
   Future deleteArea(int id) async {
     return await remoteDataSource.deleteArea(id);
   }
+
+  Future editArea(int id, String name) async {
+    return await remoteDataSource.editArea(id, name);
+  }
 }

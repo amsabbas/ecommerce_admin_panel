@@ -11,8 +11,10 @@ class AreasRemoteDataSource {
 
   Future<List<AreaModel>> getAllAreas() async {
     final userToken = authManager.getToken();
-    return service.call(AreasEndPoints.getAllEndPoint(userToken:userToken)).then((response) =>
-        response.map<AreaModel>((e) => AreaModel.fromJson(e)).toList());
+    return service
+        .call(AreasEndPoints.getAllEndPoint(userToken: userToken))
+        .then((response) =>
+            response.map<AreaModel>((e) => AreaModel.fromJson(e)).toList());
   }
 
   Future addArea(String name) async {
@@ -26,5 +28,12 @@ class AreasRemoteDataSource {
     final userToken = authManager.getToken();
     return service
         .call(AreasEndPoints.deleteEndPoint(id: id, userToken: userToken));
+  }
+
+  Future editArea(int id, String name) async {
+    Map<String, dynamic> map = {'name': name, 'id': id};
+    final userToken = authManager.getToken();
+    return service
+        .call(AreasEndPoints.editEndPoint(userToken: userToken, data: map));
   }
 }

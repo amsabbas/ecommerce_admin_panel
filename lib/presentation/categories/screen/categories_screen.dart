@@ -58,7 +58,7 @@ class _CategoriesState extends State<CategoriesScreen> {
           if (state == CurrentState.success) {
             _dataSource = CategoryDataSource(
               data: controller.categoriesState.value.data,
-              onDetailButtonPressed: (data) => {
+              onDeleteButtonPressed: (data) => {
                 CustomDialogs.showConfirmationDialog(
                     context: context,
                     title: MessageKeys.deleteTitle.tr,
@@ -68,6 +68,9 @@ class _CategoriesState extends State<CategoriesScreen> {
                     positiveCallBack: () {
                       _categoriesController.deleteCategory(data.id);
                     })
+              },
+              onDetailButtonPressed: (data) {
+                Get.to(() => const CategoryDetailScreen(), arguments: data);
               },
             );
             return SingleChildScrollView(
@@ -132,13 +135,11 @@ class _CategoriesState extends State<CategoriesScreen> {
 
   List<DataColumn> _dataColumn() {
     return [
-      generateDataColumn(context,MessageKeys.noColumnTitle.tr, true),
-      generateDataColumn(context,MessageKeys.nameColumnTitle.tr, false),
-      generateDataColumn(context,MessageKeys.actionsColumnTitle.tr, true),
+      generateDataColumn(context, MessageKeys.noColumnTitle.tr, true),
+      generateDataColumn(context, MessageKeys.nameColumnTitle.tr, false),
+      generateDataColumn(context, MessageKeys.actionsColumnTitle.tr, true),
     ];
   }
-
-
 
   void _showError(AppErrorModel result) {
     CustomSnackBar.showFailureSnackBar(

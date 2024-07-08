@@ -29,8 +29,20 @@ class CategoriesController extends GetxController {
     try {
       addCategoryState.setLoading();
 
-      addCategoryState
-          .setSuccess(await categoriesInteractor.addCategory(nameController.text));
+      addCategoryState.setSuccess(
+          await categoriesInteractor.addCategory(nameController.text));
+    } catch (error, errorStack) {
+      AppLogger.error(error: error, errorStack: errorStack);
+      addCategoryState.setError(error);
+    }
+  }
+
+  void editCategory(int id) async {
+    try {
+      addCategoryState.setLoading();
+
+      addCategoryState.setSuccess(
+          await categoriesInteractor.editCategory(id, nameController.text));
     } catch (error, errorStack) {
       AppLogger.error(error: error, errorStack: errorStack);
       addCategoryState.setError(error);

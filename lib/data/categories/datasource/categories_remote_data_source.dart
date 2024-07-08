@@ -29,4 +29,11 @@ class CategoriesRemoteDataSource {
     return service.call(CategoriesEndPoints.deleteCategoryEndPoint(
         id: id, userToken: userToken));
   }
+
+  Future editCategory(int id, String name) async {
+    Map<String, dynamic> map = {'name': name, 'id': id};
+    final userToken = authManager.getToken();
+    return service.call(CategoriesEndPoints.editEndPoint(
+        userToken: userToken, data: map));
+  }
 }

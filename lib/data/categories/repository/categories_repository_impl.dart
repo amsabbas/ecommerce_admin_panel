@@ -17,4 +17,8 @@ class CategoriesRepository {
   Future deleteCategory(int id) async {
     return await remoteDataSource.deleteCategory(id);
   }
+
+  Future editCategory(int id, String name) async {
+    return await remoteDataSource.editCategory(id, name);
+  }
 }

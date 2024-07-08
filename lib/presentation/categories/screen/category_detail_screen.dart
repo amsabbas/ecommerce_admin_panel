@@ -1,4 +1,5 @@
 import 'package:ecommerce_admin/data/base/model/app_error_model.dart';
+import 'package:ecommerce_admin/data/categories/model/category_model.dart';
 import 'package:ecommerce_admin/presentation/base/language/language.dart';
 import 'package:ecommerce_admin/presentation/base/style/colors.dart';
 import 'package:ecommerce_admin/presentation/base/utils/custom_loading.dart';
@@ -24,12 +25,17 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
   final _formKey = GlobalKey<FormBuilderState>();
   late final CategoriesController _categoriesController;
   late final Worker _addWorker;
+  late final CategoryModel? _categoryModel;
 
   @override
   void initState() {
     super.initState();
     _categoriesController = Get.find();
     _categoriesController.resetNameController();
+    _categoryModel = Get.arguments;
+    if (_categoryModel != null) {
+      _categoriesController.nameController.text = _categoryModel!.name;
+    }
     _addWorker = ever(
         _categoriesController.addCategoryState,
         (ResultData res) => {
@@ -136,12 +142,19 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                     children: [
                       ActionButtonWidget(
                           isVisible: true,
-                          title: MessageKeys.addButtonTitle.tr,
+                          title: _categoryModel != null
+                              ? MessageKeys.editButtonTitle.tr
+                              : MessageKeys.addButtonTitle.tr,
                           icon: Icons.check_circle_outline_rounded,
                           onPressed: () {
                             if (_formKey.currentState?.validate() ?? false) {
                               _formKey.currentState?.save();
-                              _categoriesController.addCategory();
+                              if (_categoryModel != null) {
+                                _categoriesController
+                                    .editCategory(_categoryModel.id);
+                              } else {
+                                _categoriesController.addCategory();
+                              }
                             }
                           }),
                     ],

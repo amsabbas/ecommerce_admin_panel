@@ -38,4 +38,17 @@ class CategoriesEndPoints {
         userToken: userToken,
         method: HttpMethod.delete);
   }
+
+  static EndPoint editEndPoint({
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? data,
+    required String? userToken,
+  }) {
+    return EndPoint(
+        endpoint: "categories/editCategory",
+        headers: headers,
+        data: data,
+        userToken: userToken,
+        method: HttpMethod.post);
+  }
 }

@@ -6,12 +6,13 @@ import 'package:get/get.dart';
 
 class CategoryDataSource extends DataTableSource {
   final void Function(CategoryModel data) onDetailButtonPressed;
-
+  final void Function(CategoryModel data) onDeleteButtonPressed;
   final List<CategoryModel> data;
 
   CategoryDataSource({
     required this.data,
     required this.onDetailButtonPressed,
+    required this.onDeleteButtonPressed,
   });
 
   @override
@@ -23,15 +24,32 @@ class CategoryDataSource extends DataTableSource {
       DataCell(Text(item.name.toString())),
       DataCell(Builder(
         builder: (context) {
-          return OutlinedButton(
-            onPressed: () => onDetailButtonPressed.call(item),
-            child: Text(
-              MessageKeys.deleteButtonTitle.tr,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium
-                  ?.copyWith(color: AppColors.ceruleanBlueColor),
-            ),
+          return Row(
+            children: [
+              OutlinedButton(
+                onPressed: () => onDetailButtonPressed.call(item),
+                child: Text(
+                  MessageKeys.editButtonTitle.tr,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium
+                      ?.copyWith(color: AppColors.ceruleanBlueColor),
+                ),
+              ),
+              const SizedBox(
+                width: 8,
+              ),
+              OutlinedButton(
+                onPressed: () => onDeleteButtonPressed.call(item),
+                child: Text(
+                  MessageKeys.deleteButtonTitle.tr,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium
+                      ?.copyWith(color: AppColors.ceruleanBlueColor),
+                ),
+              ),
+            ],
           );
         },
       )),
