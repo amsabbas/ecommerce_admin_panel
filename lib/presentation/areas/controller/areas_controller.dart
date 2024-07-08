@@ -10,6 +10,7 @@ class AreasController extends GetxController {
   final addAreaState = ResultState();
   final deleteAreaState = ResultState();
   final nameController = TextEditingController();
+  final nameArController = TextEditingController();
   late final AreaInteractor areaInteractor;
 
   AreasController({required this.areaInteractor});
@@ -28,8 +29,8 @@ class AreasController extends GetxController {
   void addArea() async {
     try {
       addAreaState.setLoading();
-      addAreaState
-          .setSuccess(await areaInteractor.addArea(nameController.text));
+      addAreaState.setSuccess(await areaInteractor.addArea(
+          nameController.text, nameArController.text));
     } catch (error, errorStack) {
       AppLogger.error(error: error, errorStack: errorStack);
       addAreaState.setError(error);
@@ -39,8 +40,8 @@ class AreasController extends GetxController {
   void editArea(int id) async {
     try {
       addAreaState.setLoading();
-      addAreaState
-          .setSuccess(await areaInteractor.editArea(id, nameController.text));
+      addAreaState.setSuccess(await areaInteractor.editArea(
+          id, nameController.text, nameArController.text));
     } catch (error, errorStack) {
       AppLogger.error(error: error, errorStack: errorStack);
       addAreaState.setError(error);
@@ -60,6 +61,7 @@ class AreasController extends GetxController {
 
   void resetNameController() {
     nameController.clear();
+    nameArController.clear();
   }
 
   @override

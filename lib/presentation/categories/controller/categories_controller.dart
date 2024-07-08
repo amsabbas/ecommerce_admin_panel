@@ -10,6 +10,7 @@ class CategoriesController extends GetxController {
   final addCategoryState = ResultState();
   final deleteCategoryState = ResultState();
   final nameController = TextEditingController();
+  final nameArController = TextEditingController();
   late final CategoryInteractor categoriesInteractor;
 
   CategoriesController({required this.categoriesInteractor});
@@ -29,8 +30,8 @@ class CategoriesController extends GetxController {
     try {
       addCategoryState.setLoading();
 
-      addCategoryState.setSuccess(
-          await categoriesInteractor.addCategory(nameController.text));
+      addCategoryState.setSuccess(await categoriesInteractor.addCategory(
+          nameController.text, nameArController.text));
     } catch (error, errorStack) {
       AppLogger.error(error: error, errorStack: errorStack);
       addCategoryState.setError(error);
@@ -41,8 +42,8 @@ class CategoriesController extends GetxController {
     try {
       addCategoryState.setLoading();
 
-      addCategoryState.setSuccess(
-          await categoriesInteractor.editCategory(id, nameController.text));
+      addCategoryState.setSuccess(await categoriesInteractor.editCategory(
+          id, nameController.text, nameArController.text));
     } catch (error, errorStack) {
       AppLogger.error(error: error, errorStack: errorStack);
       addCategoryState.setError(error);
@@ -63,6 +64,7 @@ class CategoriesController extends GetxController {
 
   void resetNameController() {
     nameController.clear();
+    nameArController.clear();
   }
 
   @override

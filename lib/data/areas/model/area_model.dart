@@ -8,11 +8,10 @@ class AreaModel {
   final int id;
   @JsonKey(name: "name")
   final String name;
+  @JsonKey(name: "name_ar")
+  final String nameAr;
 
-  AreaModel({
-    required this.id,
-    required this.name,
-  });
+  AreaModel({required this.id, required this.name, required this.nameAr});
 
   factory AreaModel.fromJson(Map<String, dynamic> json) =>
       _$AreaModelFromJson(json);

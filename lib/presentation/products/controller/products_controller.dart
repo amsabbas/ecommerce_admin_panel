@@ -23,7 +23,9 @@ class ProductsController extends GetxController {
   late final CategoryInteractor categoryInteractor;
 
   final nameController = TextEditingController();
+  final nameArController = TextEditingController();
   final descriptionController = TextEditingController();
+  final descriptionArController = TextEditingController();
   final priceController = TextEditingController();
   final quantityController = TextEditingController();
   final Rx<XFile?> pickedFile = Rx(null);
@@ -81,7 +83,9 @@ class ProductsController extends GetxController {
               id: null,
               category: null,
               name: nameController.text,
+              nameAr: nameArController.text,
               description: descriptionController.text,
+              descriptionAr: descriptionArController.text,
               photoUrl: model.filename,
               categoryId: selectedCategory.value!.id,
               quantity: int.parse(quantityController.text),
@@ -113,7 +117,9 @@ class ProductsController extends GetxController {
               id: id,
               category: null,
               name: nameController.text,
+              nameAr: nameArController.text,
               description: descriptionController.text,
+              descriptionAr: descriptionArController.text,
               photoUrl: photoUrl,
               categoryId: selectedCategory.value!.id,
               quantity: int.parse(quantityController.text),

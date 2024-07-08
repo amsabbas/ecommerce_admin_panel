@@ -53,8 +53,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     _productModel = Get.arguments;
     _productsController.selectedCategory.value = _productModel?.category;
     _productsController.nameController.text = _productModel?.name ?? "";
+    _productsController.nameArController.text = _productModel?.nameAr ?? "";
     _productsController.descriptionController.text =
         _productModel?.description ?? "";
+    _productsController.descriptionArController.text =
+        _productModel?.descriptionAr ?? "";
     _productsController.priceController.text =
         _productModel?.price != null ? _productModel!.price.toString() : "";
     _productsController.quantityController.text =
@@ -275,8 +278,25 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
           child: FormBuilderTextField(
+            controller: _productsController.nameArController,
+            name: 'name_ar',
+            decoration: InputDecoration(
+              labelText: MessageKeys.productNameInArTitle.tr,
+              hintText: MessageKeys.nameColumnTitle.tr,
+              border: const OutlineInputBorder(),
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+            ),
+            validator: FormBuilderValidators.required(),
+            onSaved: (value) =>
+            (_productsController.nameArController.text = value ?? ''),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
+          child: FormBuilderTextField(
             controller: _productsController.descriptionController,
             name: 'description',
+            maxLines: 2,
             decoration: InputDecoration(
               labelText: MessageKeys.productDescTitle.tr,
               hintText: MessageKeys.descColumnTitle.tr,
@@ -291,37 +311,61 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
           child: FormBuilderTextField(
-            controller: _productsController.priceController,
-            name: 'price',
+            maxLines: 2,
+            controller: _productsController.descriptionArController,
+            name: 'description_ar',
             decoration: InputDecoration(
-              labelText: MessageKeys.productPriceTitle.tr,
-              hintText: MessageKeys.priceColumnTitle.tr,
+              labelText: MessageKeys.productDescInArTitle.tr,
+              hintText: MessageKeys.descColumnTitle.tr,
               border: const OutlineInputBorder(),
               floatingLabelBehavior: FloatingLabelBehavior.always,
             ),
-            keyboardType: TextInputType.number,
             validator: FormBuilderValidators.required(),
             onSaved: (value) =>
-                (_productsController.priceController.text = value ?? ''),
+            (_productsController.descriptionArController.text = value ?? ''),
           ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
-          child: FormBuilderTextField(
-            controller: _productsController.quantityController,
-            name: 'quantity',
-            decoration: InputDecoration(
-              labelText: MessageKeys.productQuantityTitle.tr,
-              hintText: MessageKeys.quantityColumnTitle.tr,
-              border: const OutlineInputBorder(),
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-            ),
-            keyboardType: TextInputType.number,
-            validator: FormBuilderValidators.required(),
-            onSaved: (value) =>
-                (_productsController.quantityController.text = value ?? ''),
+          child: Row(
+            children: [
+              Expanded(
+                child: FormBuilderTextField(
+                  controller: _productsController.priceController,
+                  name: 'price',
+                  decoration: InputDecoration(
+                    labelText: MessageKeys.productPriceTitle.tr,
+                    hintText: MessageKeys.priceColumnTitle.tr,
+                    border: const OutlineInputBorder(),
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: FormBuilderValidators.required(),
+                  onSaved: (value) =>
+                      (_productsController.priceController.text = value ?? ''),
+                ),
+              ),
+              const SizedBox(width: 16.0),
+              Expanded(
+                child: FormBuilderTextField(
+                  controller: _productsController.quantityController,
+                  name: 'quantity',
+                  decoration: InputDecoration(
+                    labelText: MessageKeys.productQuantityTitle.tr,
+                    hintText: MessageKeys.quantityColumnTitle.tr,
+                    border: const OutlineInputBorder(),
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: FormBuilderValidators.required(),
+                  onSaved: (value) =>
+                  (_productsController.quantityController.text = value ?? ''),
+                ),
+              ),
+            ],
           ),
         ),
+
       ],
     );
   }

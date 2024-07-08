@@ -68,13 +68,17 @@ class MessageKeys {
   static const String isAvailableColumnTitle = "isAvailableColumnTitle";
 
   static const String categoryNameTitle = "categoryNameTitle";
+  static const String categoryNameInArTitle = "categoryNameInArTitle";
   static const String promoCodeTitle = "promoCodeTitle";
   static const String promoDiscountTitle = "promoDiscountTitle";
   static const String productNameTitle = "productNameTitle";
   static const String productDescTitle = "productDescTitle";
+  static const String productNameInArTitle = "productNameInArTitle";
+  static const String productDescInArTitle = "productDescInArTitle";
   static const String productPriceTitle = "productPriceTitle";
   static const String productQuantityTitle = "productQuantityTitle";
   static const String areaNameTitle = "areaNameTitle";
+  static const String areaNameInArTitle = "areaNameInArTitle";
 
 
   static const String deleteTitle = "deleteTitle";
@@ -187,16 +191,20 @@ class Language extends Translations {
           MessageKeys.isAvailableColumnTitle: "Is Available",
           MessageKeys.codeColumnTitle: "Code",
           MessageKeys.areaNameTitle: "Area Name",
+          MessageKeys.areaNameInArTitle: "Area Name in Ar",
           MessageKeys.discountColumnTitle: "Discount",
           MessageKeys.photoColumnTitle: "Photo",
           MessageKeys.chooseFileTitle: "Choose File",
 
 
           MessageKeys.categoryNameTitle: "Category Name",
+          MessageKeys.categoryNameInArTitle: "Category Name in Ar",
           MessageKeys.promoCodeTitle: "Promo Code",
           MessageKeys.promoDiscountTitle: "Promo Discount",
           MessageKeys.productNameTitle: "Product Name",
           MessageKeys.productDescTitle: "Product Description",
+          MessageKeys.productNameInArTitle: "Product Name in Ar",
+          MessageKeys.productDescInArTitle: "Product Description in Ar",
           MessageKeys.productPriceTitle: "Product Price",
           MessageKeys.productQuantityTitle: "Product Quantity",
 
@@ -303,18 +311,21 @@ class Language extends Translations {
           MessageKeys.isAvailableColumnTitle: "متوفر",
           MessageKeys.codeColumnTitle: "الكود",
           MessageKeys.areaNameTitle: "اسم المنطقة",
+          MessageKeys.areaNameInArTitle: "اسم المنطقة بالعربي",
           MessageKeys.discountColumnTitle: "الخصم",
           MessageKeys.photoColumnTitle: "الصورة",
           MessageKeys.chooseFileTitle: "اختر ملف",
 
           MessageKeys.categoryNameTitle: "اسم القسم",
+          MessageKeys.categoryNameInArTitle: "اسم القسم بالعربي",
           MessageKeys.promoCodeTitle: "كود العرض",
           MessageKeys.promoDiscountTitle: "نسبة الخصم",
           MessageKeys.productNameTitle: "اسم المنتج",
           MessageKeys.productDescTitle: "وصف المنتج",
+          MessageKeys.productNameInArTitle: "اسم المنتج بالعربي",
+          MessageKeys.productDescInArTitle: "وصف المنتج بالعربي",
           MessageKeys.productPriceTitle: "سعر المنتج",
           MessageKeys.productQuantityTitle: "كمية المنتج",
-
 
           MessageKeys.deleteTitle: "حذف",
           MessageKeys.deleteMessage: "هل أنت متأكد من حذف هذا العنصر؟",

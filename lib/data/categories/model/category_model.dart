@@ -8,10 +8,13 @@ class CategoryModel {
   final int id;
   @JsonKey(name: "name")
   final String name;
+  @JsonKey(name: "name_ar")
+  final String nameAr;
 
   CategoryModel({
     required this.id,
     required this.name,
+    required this.nameAr
   });
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) =>

@@ -10,15 +10,15 @@ class CategoriesRepository {
     return await remoteDataSource.getAllCategories();
   }
 
-  Future addCategory(String name) async {
-    return await remoteDataSource.addCategory(name);
+  Future addCategory(String name, String nameAr) async {
+    return await remoteDataSource.addCategory(name, nameAr);
   }
 
   Future deleteCategory(int id) async {
     return await remoteDataSource.deleteCategory(id);
   }
 
-  Future editCategory(int id, String name) async {
-    return await remoteDataSource.editCategory(id, name);
+  Future editCategory(int id, String name, String nameAr) async {
+    return await remoteDataSource.editCategory(id, name, nameAr);
   }
 }

@@ -9,8 +9,12 @@ class ProductModel {
   final int? id;
   @JsonKey(name: "name")
   final String? name;
+  @JsonKey(name: "name_ar")
+  final String? nameAr;
   @JsonKey(name: "description")
   final String? description;
+  @JsonKey(name: "description_ar")
+  final String? descriptionAr;
   @JsonKey(name: "photo_url")
   final String? photoUrl;
   @JsonKey(name: "category")
@@ -34,6 +38,8 @@ class ProductModel {
     required this.isAvailable,
     required this.categoryId,
     required this.price,
+    required this.nameAr,
+    required this.descriptionAr,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>

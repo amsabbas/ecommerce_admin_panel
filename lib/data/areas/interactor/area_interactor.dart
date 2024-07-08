@@ -8,10 +8,11 @@ class AreaInteractor {
 
   Future<List<AreaModel>> getAllAreas() async => await repository.getAllAreas();
 
-  Future addArea(String name) async => await repository.addArea(name);
+  Future addArea(String name, String nameAr) async =>
+      await repository.addArea(name, nameAr);
 
   Future deleteArea(int id) async => await repository.deleteArea(id);
 
-  Future editArea(int id, String name) async =>
-      await repository.editArea(id, name);
+  Future editArea(int id, String name, String nameAr) async =>
+      await repository.editArea(id, name, nameAr);
 }

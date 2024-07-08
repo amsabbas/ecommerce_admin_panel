@@ -34,7 +34,8 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
     _categoriesController.resetNameController();
     _categoryModel = Get.arguments;
     if (_categoryModel != null) {
-      _categoriesController.nameController.text = _categoryModel!.name;
+      _categoriesController.nameController.text = _categoryModel.name;
+      _categoriesController.nameArController.text = _categoryModel.nameAr;
     }
     _addWorker = ever(
         _categoriesController.addCategoryState,
@@ -130,6 +131,23 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
               validator: FormBuilderValidators.required(),
               onSaved: (value) =>
                   (_categoriesController.nameController.text = value ?? ''),
+            ),
+          ),
+          Padding(
+            padding:
+            const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
+            child: FormBuilderTextField(
+              controller: _categoriesController.nameArController,
+              name: 'name_ar',
+              decoration: InputDecoration(
+                labelText: MessageKeys.categoryNameInArTitle.tr,
+                hintText: MessageKeys.nameColumnTitle.tr,
+                border: const OutlineInputBorder(),
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+              ),
+              validator: FormBuilderValidators.required(),
+              onSaved: (value) =>
+              (_categoriesController.nameArController.text = value ?? ''),
             ),
           ),
           Padding(

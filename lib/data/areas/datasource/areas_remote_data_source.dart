@@ -17,8 +17,8 @@ class AreasRemoteDataSource {
             response.map<AreaModel>((e) => AreaModel.fromJson(e)).toList());
   }
 
-  Future addArea(String name) async {
-    Map<String, String> map = {'name': name};
+  Future addArea(String name, String nameAr) async {
+    Map<String, String> map = {'name': name, 'name_ar': nameAr};
     final userToken = authManager.getToken();
     return service
         .call(AreasEndPoints.addEndPoint(userToken: userToken, data: map));
@@ -30,8 +30,8 @@ class AreasRemoteDataSource {
         .call(AreasEndPoints.deleteEndPoint(id: id, userToken: userToken));
   }
 
-  Future editArea(int id, String name) async {
-    Map<String, dynamic> map = {'name': name, 'id': id};
+  Future editArea(int id, String name, String nameAr) async {
+    Map<String, dynamic> map = {'name': name, 'id': id, 'name_ar': nameAr};
     final userToken = authManager.getToken();
     return service
         .call(AreasEndPoints.editEndPoint(userToken: userToken, data: map));

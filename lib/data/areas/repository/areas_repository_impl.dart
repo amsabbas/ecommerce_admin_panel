@@ -10,15 +10,15 @@ class AreasRepository {
     return await remoteDataSource.getAllAreas();
   }
 
-  Future addArea(String name) async {
-    return await remoteDataSource.addArea(name);
+  Future addArea(String name, String nameAr) async {
+    return await remoteDataSource.addArea(name, nameAr);
   }
 
   Future deleteArea(int id) async {
     return await remoteDataSource.deleteArea(id);
   }
 
-  Future editArea(int id, String name) async {
-    return await remoteDataSource.editArea(id, name);
+  Future editArea(int id, String name, String nameAr) async {
+    return await remoteDataSource.editArea(id, name, nameAr);
   }
 }

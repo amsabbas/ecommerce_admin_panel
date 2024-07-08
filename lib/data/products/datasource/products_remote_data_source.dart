@@ -20,7 +20,9 @@ class ProductsRemoteDataSource {
     Map<String, dynamic> map = {
       'id': model.id,
       'name': model.name,
+      'name_ar': model.nameAr,
       'description': model.description,
+      'description_ar': model.descriptionAr,
       'price': model.price,
       'quantity': model.quantity,
       'photo_url': model.photoUrl,
@@ -36,7 +38,9 @@ class ProductsRemoteDataSource {
     Map<String, dynamic> map = {
       'id': model.id,
       'name': model.name,
+      'name_ar': model.nameAr,
       'description': model.description,
+      'description_ar': model.descriptionAr,
       'price': model.price,
       'quantity': model.quantity,
       'photo_url': model.photoUrl,

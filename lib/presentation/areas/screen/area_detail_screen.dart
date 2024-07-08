@@ -35,6 +35,7 @@ class _AreaDetailScreenState extends State<AreaDetailScreen> {
     _areaModel = Get.arguments;
     if (_areaModel != null) {
       _areasController.nameController.text = _areaModel.name;
+      _areasController.nameArController.text = _areaModel.nameAr;
     }
     _addWorker = ever(
         _areasController.addAreaState,
@@ -130,6 +131,24 @@ class _AreaDetailScreenState extends State<AreaDetailScreen> {
               validator: FormBuilderValidators.required(),
               onSaved: (value) =>
                   (_areasController.nameController.text = value ?? ''),
+            ),
+          ),
+
+          Padding(
+            padding:
+            const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
+            child: FormBuilderTextField(
+              controller: _areasController.nameArController,
+              name: 'name_ar',
+              decoration: InputDecoration(
+                labelText: MessageKeys.areaNameInArTitle.tr,
+                hintText: MessageKeys.nameColumnTitle.tr,
+                border: const OutlineInputBorder(),
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+              ),
+              validator: FormBuilderValidators.required(),
+              onSaved: (value) =>
+              (_areasController.nameArController.text = value ?? ''),
             ),
           ),
           Padding(

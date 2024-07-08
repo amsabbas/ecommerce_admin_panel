@@ -9,10 +9,11 @@ class CategoryInteractor {
   Future<List<CategoryModel>> getAllCategories() async =>
       await repository.getAllCategories();
 
-  Future addCategory(String name) async => await repository.addCategory(name);
+  Future addCategory(String name, String nameAr) async =>
+      await repository.addCategory(name, nameAr);
 
   Future deleteCategory(int id) async => await repository.deleteCategory(id);
 
-  Future editCategory(int id, String name) async =>
-      await repository.editCategory(id, name);
+  Future editCategory(int id, String name, String nameAr) async =>
+      await repository.editCategory(id, name, nameAr);
 }

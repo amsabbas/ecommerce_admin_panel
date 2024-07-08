@@ -17,8 +17,8 @@ class CategoriesRemoteDataSource {
             .toList());
   }
 
-  Future addCategory(String name) async {
-    Map<String, String> map = {'name': name};
+  Future addCategory(String name, String nameAr) async {
+    Map<String, String> map = {'name': name, 'name_ar': nameAr};
     final userToken = authManager.getToken();
     return service.call(CategoriesEndPoints.addCategoryEndPoint(
         userToken: userToken, data: map));
@@ -30,10 +30,10 @@ class CategoriesRemoteDataSource {
         id: id, userToken: userToken));
   }
 
-  Future editCategory(int id, String name) async {
-    Map<String, dynamic> map = {'name': name, 'id': id};
+  Future editCategory(int id, String name, String nameAr) async {
+    Map<String, dynamic> map = {'name': name, 'id': id, 'name_ar': nameAr};
     final userToken = authManager.getToken();
-    return service.call(CategoriesEndPoints.editEndPoint(
-        userToken: userToken, data: map));
+    return service.call(
+        CategoriesEndPoints.editEndPoint(userToken: userToken, data: map));
   }
 }
