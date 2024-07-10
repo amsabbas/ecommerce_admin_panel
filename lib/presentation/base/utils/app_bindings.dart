@@ -34,6 +34,7 @@ import 'package:ecommerce_admin/presentation/ads/controller/ads_controller.dart'
 import 'package:ecommerce_admin/presentation/areas/controller/areas_controller.dart';
 import 'package:ecommerce_admin/presentation/base/controller/menu_controller.dart';
 import 'package:ecommerce_admin/presentation/base/controller/user_controller.dart';
+import 'package:ecommerce_admin/presentation/base/model/constants.dart';
 import 'package:ecommerce_admin/presentation/categories/controller/categories_controller.dart';
 import 'package:ecommerce_admin/presentation/dashboard/controller/dashboard_controller.dart';
 import 'package:ecommerce_admin/presentation/login/controller/login_controller.dart';
@@ -73,7 +74,7 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => AppSettingsController(
         settingsInteractor: Get.find<SettingsInteractor>()));
 
-    Get.lazyPut(() => ServiceGenerator("http://localhost:3000/",
+    Get.lazyPut(() => ServiceGenerator(baseURL,
         Get.find<AuthManager>(), Get.find<SettingsLocalDataSource>()));
 
     Get.lazyPut(() => UserRemoteDataSource(
