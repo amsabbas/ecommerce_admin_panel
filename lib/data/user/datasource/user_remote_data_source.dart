@@ -11,7 +11,11 @@ class UserRemoteDataSource {
   UserRemoteDataSource({required this.service, required this.authManager});
 
   Future<LoginModel> login(String email, String password) async {
-    Map<String, String> map = {'email': email, 'password': password};
+    Map<String, dynamic> map = {
+      'email': email,
+      'password': password,
+      'is_admin': true
+    };
     return service
         .call(UserEndPoints.loginEndPoint(data: map))
         .then((response) => LoginModel.fromJson(response));
@@ -20,7 +24,7 @@ class UserRemoteDataSource {
   Future<UserModel> profile() async {
     final userToken = authManager.getToken();
     return service
-        .call(UserEndPoints.profileEndPoint(userToken:userToken))
+        .call(UserEndPoints.profileEndPoint(userToken: userToken))
         .then((response) => UserModel.fromJson(response));
   }
 }
