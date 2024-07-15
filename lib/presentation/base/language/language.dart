@@ -125,6 +125,8 @@ class MessageKeys {
   static const String orderProductPrice = "orderProductPrice";
   static const String orderProductQuantity = "orderProductQuantity";
 
+  static const String orderAddedTitle = "orderAddedTitle";
+
 }
 
 class Language extends Translations {
@@ -251,6 +253,8 @@ class Language extends Translations {
           MessageKeys.orderProductPrice: "Product Price",
           MessageKeys.orderProductQuantity: "Product Quantity",
 
+          MessageKeys.orderAddedTitle: "New Order Added",
+
 
         },
         'ar': {
@@ -371,6 +375,7 @@ class Language extends Translations {
           MessageKeys.orderProductPrice: "سعر المنتج",
           MessageKeys.orderProductQuantity: "كمية المنتج",
 
+          MessageKeys.orderAddedTitle: "تم إضافة طلب جديد",
         }
 
       };

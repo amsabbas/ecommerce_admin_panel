@@ -4,6 +4,71 @@ import '../style/colors.dart';
 
 class CustomDialogs {
 
+  static void showMessageDialog(
+      {required BuildContext context,
+        required String title,
+        required String message,
+        required String positiveButtonTitle,
+        Function? positiveCallBack,}) {
+    showGeneralDialog(
+      context: context,
+      barrierColor: Colors.black.withOpacity(0.5),
+      pageBuilder: (_, __, ___) {
+        return Material(
+          color: Colors.transparent,
+          child: Center(
+            child: Container(
+              color: Colors.white, // Dialog background
+              width: 500, // Dialog width
+              height: 200, // Dialog height
+              child: Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      title,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: AppColors.ceruleanBlueColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      message,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: AppColors.ceruleanBlueColor,
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                            child: Text(
+                              positiveButtonTitle,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(
+                                color: AppColors.ceruleanBlueColor,
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                              positiveCallBack?.call();
+                            }),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   static void showConfirmationDialog(
       {required BuildContext context,
       required String title,

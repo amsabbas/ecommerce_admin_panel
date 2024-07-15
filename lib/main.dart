@@ -5,13 +5,29 @@ import 'package:ecommerce_admin/presentation/base/style/theme.dart';
 import 'package:ecommerce_admin/presentation/base/utils/app_bindings.dart';
 import 'package:ecommerce_admin/presentation/home/screen/home_screen.dart';
 import 'package:ecommerce_admin/presentation/login/screen/login_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
+
   await AppBindings().dependencies();
+
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+        apiKey: "AIzaSyAt4d2f85aYI0Fpn4dQrvxg1o_7SwJJ9RU",
+        authDomain: "ecommerce-57aeb.firebaseapp.com",
+        projectId: "ecommerce-57aeb",
+        databaseURL: "https://ecommerce-57aeb-default-rtdb.firebaseio.com/",
+        storageBucket: "ecommerce-57aeb.appspot.com",
+        messagingSenderId: "681909148680",
+        appId: "1:681909148680:web:cff41319f8840fed44c5bd"),
+  );
+
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]).then((value) {

@@ -37,6 +37,7 @@ import 'package:ecommerce_admin/presentation/base/controller/user_controller.dar
 import 'package:ecommerce_admin/presentation/base/model/constants.dart';
 import 'package:ecommerce_admin/presentation/categories/controller/categories_controller.dart';
 import 'package:ecommerce_admin/presentation/dashboard/controller/dashboard_controller.dart';
+import 'package:ecommerce_admin/presentation/home/controller/home_controller.dart';
 import 'package:ecommerce_admin/presentation/login/controller/login_controller.dart';
 import 'package:ecommerce_admin/presentation/orders/controller/orders_controller.dart';
 import 'package:ecommerce_admin/presentation/products/controller/products_controller.dart';
@@ -94,6 +95,8 @@ class AppBindings extends Bindings {
     );
 
     Get.lazyPut(() => MenuAppController());
+
+    Get.lazyPut(() => HomeController());
   }
 
   Future<void> _addPromosDependencies() async {
