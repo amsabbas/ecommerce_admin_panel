@@ -37,6 +37,10 @@ class OrderInfoWidget extends StatelessWidget {
             color: orderModel.status.getStatusColor()),
         _itemWidget(
             context: context,
+            key: "${MessageKeys.orderPaymentMethod.tr}: ",
+            value: orderModel.paymentType),
+        _itemWidget(
+            context: context,
             key: "${MessageKeys.orderSubTotalPrice.tr}: ",
             value: orderModel.subtotal.toString()),
         _itemWidget(

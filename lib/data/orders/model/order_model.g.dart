@@ -27,12 +27,14 @@ OrderModel _$OrderModelFromJson(Map<String, dynamic> json) => OrderModel(
           ? null
           : UserAddressModel.fromJson(
               json['user_address'] as Map<String, dynamic>),
+      paymentType: json['payment_type'] as String,
     );
 
 Map<String, dynamic> _$OrderModelToJson(OrderModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'status': instance.status,
+      'payment_type': instance.paymentType,
       'order_date': instance.date,
       'subtotal': instance.subtotal,
       'discount': instance.discount,

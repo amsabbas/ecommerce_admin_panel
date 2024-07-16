@@ -14,6 +14,9 @@ class OrderModel {
   @JsonKey(name: "status")
   final String status;
 
+  @JsonKey(name: "payment_type")
+  final String paymentType;
+
   @JsonKey(name: "order_date")
   final String date;
 
@@ -52,6 +55,7 @@ class OrderModel {
     required this.info,
     required this.userModel,
     required this.address,
+    required this.paymentType
   });
 
   factory OrderModel.fromJson(Map<String, dynamic> json) =>
