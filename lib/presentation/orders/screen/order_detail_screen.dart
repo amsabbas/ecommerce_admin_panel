@@ -113,21 +113,15 @@ class _OrderDetailScreenState extends State<OrderDetailScreen> {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              OrderUserInfoWidget(
-                userModel: _orderModel!.userModel!,
-                userAddressModel: _orderModel.address!,
-              ),
-              const SizedBox(
-                width: 16,
-              ),
-              OrderInfoWidget(
-                orderModel: _orderModel,
-              ),
-            ],
+          OrderUserInfoWidget(
+            userModel: _orderModel!.userModel!,
+            userAddressModel: _orderModel.address!,
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          OrderInfoWidget(
+            orderModel: _orderModel,
           ),
           const SizedBox(
             height: 16,

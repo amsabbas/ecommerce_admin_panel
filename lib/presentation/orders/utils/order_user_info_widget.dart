@@ -17,42 +17,50 @@ class OrderUserInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          MessageKeys.userInfo.tr,
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.bold, color: AppColors.ceruleanBlueColor),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              MessageKeys.userInfo.tr,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold, color: AppColors.ceruleanBlueColor),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            _itemWidget(
+                context, "${MessageKeys.userName.tr}: ", userModel.name.toString()),
+            _itemWidget(context, "${MessageKeys.userEmail.tr}: ",
+                userModel.email.toString()),
+            _itemWidget(context, "${MessageKeys.userPhone.tr}: ",
+                userModel.phone.toString()),
+          ],
         ),
-        const SizedBox(
-          height: 8,
-        ),
-        _itemWidget(
-            context, "${MessageKeys.userName.tr}: ", userModel.name.toString()),
-        _itemWidget(context, "${MessageKeys.userEmail.tr}: ",
-            userModel.email.toString()),
-        _itemWidget(context, "${MessageKeys.userPhone.tr}: ",
-            userModel.phone.toString()),
-        const SizedBox(
-          height: 16,
-        ),
-        Text(
-          MessageKeys.userAddressInfo.tr,
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.bold, color: AppColors.ceruleanBlueColor),
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        _itemWidget(context, "${MessageKeys.userStreetName.tr}: ",
-            userAddressModel.streetName.toString()),
-        _itemWidget(context, "${MessageKeys.userBuildingNumber.tr}: ",
-            userAddressModel.buildingNo.toString()),
-        _itemWidget(context, "${MessageKeys.userFloorNumber.tr}: ",
-            userAddressModel.floorNo.toString()),
-        _itemWidget(context, "${MessageKeys.userApartmentNumber.tr}: ",
-            userAddressModel.apartmentNo.toString()),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              MessageKeys.userAddressInfo.tr,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold, color: AppColors.ceruleanBlueColor),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            _itemWidget(context, "${MessageKeys.userStreetName.tr}: ",
+                userAddressModel.streetName.toString()),
+            _itemWidget(context, "${MessageKeys.userBuildingNumber.tr}: ",
+                userAddressModel.buildingNo.toString()),
+            _itemWidget(context, "${MessageKeys.userFloorNumber.tr}: ",
+                userAddressModel.floorNo.toString()),
+            _itemWidget(context, "${MessageKeys.userApartmentNumber.tr}: ",
+                userAddressModel.apartmentNo.toString()),
+          ],
+        )
       ],
     );
   }
